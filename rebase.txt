@@ -1,0 +1,14 @@
+rebase
+git checkout -b CrisBranch
+git add .
+git commit -m "blah"
+git checkout master
+git pull origin master
+git checkout CrisBranch
+git rebase master
+git checkout master
+git merge CrisBranch
+git push origin master
+
+git fetch
+git checkout  whateverbranch
