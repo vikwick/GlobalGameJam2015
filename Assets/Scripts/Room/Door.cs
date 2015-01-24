@@ -29,6 +29,8 @@ public class Door : MonoBehaviour {
 			this.gameObject.transform.localScale = newScale;
 			this.gameObject.transform.position = gameObject.transform.position + this.getHeight()*1f*Vector3.down;
 		}
+
+		this.gameObject.transform.position = gameObject.transform.position - new Vector3(0,0,1);
 	}
 
 	public static void createDoors(GameObject floor, ArrayList doors){

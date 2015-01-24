@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour {
 
 	void kill()
 	{
-		Vector2 pos = p.transform.position;
+		Vector3 pos = p.transform.position;
 		rigidbody2D.AddForce((pos - transform.position)*SPD);
 		if(pos.magnitude < RNG) // player in range
 		{

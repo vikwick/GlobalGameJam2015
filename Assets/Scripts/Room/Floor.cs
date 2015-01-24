@@ -17,7 +17,8 @@ public class Floor : MonoBehaviour {
 
 	public static GameObject createFloor(){
 		GameObject floor = (GameObject)Resources.Load("Prefabs/floor");
-		return floor;
+		GameObject f = Instantiate(floor, new Vector3(0,0,0) ,Quaternion.identity) as GameObject;
+		return f;
 	}
 	
 
