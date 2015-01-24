@@ -6,7 +6,7 @@ public class Floor : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.setSprite("floor");
+		this.setSprite("Environment/floor");
 		this.scale(2,2);
 	}
 	

@@ -12,11 +12,14 @@ public class EnemyController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		p = GameObject.FindGameObjectWithTag("Player");
+		this.SPD = 1;
+		this.RNG = 5;
+		this.HP = 10;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		this.kill();
 	}
 
 	void OnCollision2DEnter(Collision2D c)
