@@ -1,0 +1,38 @@
+Sprites:
+
+    chicken sprite
+
+    varying enemies with walk/attack/death animations **if enemies are shooting projectiles, make the projectile its own sprite**
+
+    make a death animation for the chicken (make it as funny as you want)
+
+    make an idle animation for the chicken
+
+    chicken sprite with black skin and red eyes/fire eyes (shitty fire, purple or red or black fire, if black fire use a different skin color) - custom icon sprite for "rage mode" (when you pick it up then you get into rage mode, so make a circle/sphere sprite icon for it; same for all of the other chicken sprite ones)
+
+    chicken sprite with a mustache, make a sombrero sprite as a separate sprite
+
+    chicken sprite with super saiyan hair
+
+    chicken sprite with a monocle and a small "laser" sprite which will be the projectile
+
+    chicken sprite with link hat **either draw the sword and shield on the sprite with attack animation OR draw the sword and shield as seperate items and we'll make them parents of the chicken; note that the first option will make it look much better you visual fucker**
+
+    chicken sprite without a head, confetti sprites, and a sprite for a confetti trail (you feel free to take "confetti" and replace it with whatever you want みつるくん)
+
+
+    begin boss creation
+
+    first things first, make a sprite like a skull or some epic symbol to signify a boss, we will put that on the appropriate boss doors.
+
+    make bosses of the following types, with attack animations that vary (make some bosses do close range attacks, like claws or sword swings or kicks or punches or whatever, make other posses shoot projectiles or spawn walls of flame (make the projectiles or walls of flame or pools of acid or whatever attakcs separate sprites))
+
+    make death animations for bosses
+
+    make sprites for boss weapons
+
+    make sprites for chicken holding boss weapons/attack animations of boss weapons
+
+    make some of the boss weapons shoot projectiles or have cool effects (we can code the effects, but we need the sprites for it)
+
+
