@@ -10,11 +10,12 @@ public class Head : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		Vector3 p = gameObject.transform.parent.transform.position;
-		Vector3 player2 = player.transform.position;
-		Vector3 u = (player2 - p).normalized;
-		this.rigidbody2D.AddForce(new Vector2(u.x, u.y)*50f);
+		if(gameObject.transform.parent!=null && player!=null){
+			Vector3 p = gameObject.transform.parent.transform.position;
+			Vector3 player2 = player.transform.position;
+			Vector3 u = (player2 - p).normalized;
+			this.rigidbody2D.AddForce(new Vector2(u.x, u.y)*50f);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {

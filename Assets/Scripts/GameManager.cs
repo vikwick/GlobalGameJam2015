@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
 
 
 	bool died(){
-		return ((int)_player.currentHP == 0 || (int)_player.infectedLevel == 100);
+		return ((int)_player.currentHP <= 0 || (int)_player.infectedLevel == 100);
 	}
 
 
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
 
 	void deathMessage(string m){
 		Message.instance.message = m;
-//		this.restart.SetActive(true);
+		this.restart.SetActive(true);
 	}
 
 	void restartGame(){
