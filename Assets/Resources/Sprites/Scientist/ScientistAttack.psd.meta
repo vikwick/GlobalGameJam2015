@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 94fd77fc5fa619e4b812dbf7f366a228
+=======
+guid: 87d3d339315d96049b6dbcbc8ab572d6
+>>>>>>> pull pics
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
