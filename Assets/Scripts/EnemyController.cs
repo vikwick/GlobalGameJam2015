@@ -40,16 +40,18 @@ public class EnemyController : MonoBehaviour {
 
 	void kill()
 	{
-		Vector3 pos = p.transform.position;
-		rigidbody2D.AddForce((pos - transform.position)*SPD);
-		if(pos.magnitude < RNG) // player in range
-		{
-			attack();
+		if(p!= null){
+			Vector3 pos = p.transform.position;
+			rigidbody2D.AddForce((pos - transform.position)*SPD);
+			if(pos.magnitude < RNG) // player in range
+			{
+				attack();
+			}
+			else{
+				anim.SetBool("attack", false);
+			}
+			attackpath = (pos - transform.position);
 		}
-		else{
-			anim.SetBool("attack", false);
-		}
-		attackpath = (pos - transform.position);
 	}
 
 	void attack()
