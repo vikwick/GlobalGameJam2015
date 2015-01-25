@@ -18,6 +18,9 @@ public class AttackUpCollectable : MonoBehaviour {
         player = GameManager.player;
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
+        _player.ATKUp = true;
+        _player.ATKSPDUp = false;
+        _player.SPDUp = false;
         _player.ATK += 5f;
         Destroy(gameObject);
     }

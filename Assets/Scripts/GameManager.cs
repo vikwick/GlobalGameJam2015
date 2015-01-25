@@ -22,10 +22,16 @@ public class GameManager : MonoBehaviour {
         _player = player.GetComponent<OGChickenController>();
 		dungeon = GameObject.FindGameObjectWithTag("Dungeon");
        enemy = GameObject.FindGameObjectWithTag("Enemy");
-       _enemy = enemy.GetComponent<EnemyController>();
+       if (enemy != null){
+            _enemy = enemy.GetComponent<EnemyController>();
+        }
+
         //door = GameObject.FindGameObjectWithTag("Door");
 		this.restart = GameObject.FindGameObjectWithTag("Restart");
-		this.restart.SetActive(false);
+        if (this.restart != null){
+            this.restart.SetActive(false);     
+        }
+
 
 
    }

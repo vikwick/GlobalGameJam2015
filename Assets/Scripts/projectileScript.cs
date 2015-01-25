@@ -24,25 +24,19 @@ public class projectileScript : MonoBehaviour {
             transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
             rigidbody2D.velocity = _player.maxProjSpeed * projVector;
         }
+    }
 
-        //if (_player.OGChickenVec.x < 0 && _player.OGChickenVec.y < 0){
-            //transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
-        //}
-        //else if (_player.OGChickenVec.x < 0 && _player.OGChickenVec.y > 0){
-            //transform.rotation = new Quaternion(0, 0, rotationangle-180, 0);
-        //}
-        //else{
-            //transform.rotation = new Quaternion(0, 0, rotationangle, 0);
-        //}
-	}
 	void OnTriggerExit2D(Collider2D b){
         if(b.gameObject.tag == "Enemy")
         {
             enemy = GameObject.FindGameObjectWithTag("Enemy");
-            _enemy = enemy.GetComponent<EnemyController>();
-            _enemy.HP -= 5;
+            if (enemy!=null){
+                _enemy = enemy.GetComponent<EnemyController>();
+                _enemy.HP -= 5;
+            }
+
         } 
-        if (b.gameObject.tag != "Player"){
+        if (b.gameObject.tag != "Player" && b.gameObject.tag!= "Door" && b.gameObject.tag!="Wall"){
             Destroy(gameObject);
         }  
 
