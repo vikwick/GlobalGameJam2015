@@ -34,12 +34,12 @@ public class OGChickenController : MonoBehaviour {
         else{
             idleTime = 0;
         }
-        if((int)idleTime%3==0 && !timesUp){
+        if((int)idleTime%2==0 && !timesUp){
             timesUp = true;
         }
-        else if(((int)idleTime+1)%3==0 & timesUp){
+        else if(((int)idleTime+1)%2==0 & timesUp){
             timesUp = false;
-            infectedLevel += 5;
+            infectedLevel += 20;
         }
         if(Input.GetButtonDown("attack")){
             anim.SetTrigger("attacking");

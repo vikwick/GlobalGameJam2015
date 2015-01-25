@@ -6,6 +6,7 @@ public class Room : MonoBehaviour {
 
 	private Floor floorScript;
 	private GameObject f;
+
 	public ArrayList doors;
 	// Use this for initialization
 	void Start () {
