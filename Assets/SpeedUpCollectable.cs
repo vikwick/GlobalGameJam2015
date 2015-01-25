@@ -15,7 +15,12 @@ public class SpeedUpCollectable : Collectable {
     
     }
     void OnCollisionEnter2D(Collision2D c){
+<<<<<<< HEAD
         player = GameManager.player;
+=======
+
+		player = GameManager.player;
+>>>>>>> ppleeease
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         _player.maxSpeed += 6f;

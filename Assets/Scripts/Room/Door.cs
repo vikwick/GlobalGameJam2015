@@ -61,7 +61,7 @@ public class Door : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D c)
 	{
-		if(c.gameObject.tag == "Player")
+		if(c.gameObject.tag == "Player" && !anim.GetBool("Locked"))
 		{
 			GameManager.currRoom = dst.transform.parent.gameObject;
 			GameManager._dungeon.placePlayer(dst);

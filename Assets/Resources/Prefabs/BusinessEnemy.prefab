@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167550}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.53999996, y: -.460000008, z: 0}
+  m_LocalPosition: {x: 28.547905, y: -1.6340394, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,8 +56,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 4.63000011, y: 5.67000008}
-  m_Center: {x: 0, y: -.419999987}
+  m_Size: {x: 1.4896071, y: 3.2815361}
+  m_Center: {x: .375961304, y: -.0661535263}
 --- !u!95 &9567550
 Animator:
   serializedVersion: 3
@@ -89,6 +89,10 @@ MonoBehaviour:
   SPD: 0
   RNG: 0
   attackpath: {x: 0, y: 0, z: 0}
+  p: {fileID: 0}
+  _player: {fileID: 0}
+  anim: {fileID: 0}
+  projectile: {fileID: 0}
 --- !u!212 &21267550
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -17,7 +17,10 @@ public class AttackSpeedCollectable : Collectable {
     void OnCollisionEnter2D(Collision2D c){
 
         player = GameManager.player;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ppleeease
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         _player.maxProjSpeed += 5;

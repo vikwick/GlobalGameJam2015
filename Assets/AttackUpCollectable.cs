@@ -15,6 +15,10 @@ public class AttackUpCollectable : Collectable {
     
     }
     void OnCollisionEnter2D(Collision2D c){
+<<<<<<< HEAD
+=======
+
+>>>>>>> ppleeease
 		player = GameManager.player;
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();

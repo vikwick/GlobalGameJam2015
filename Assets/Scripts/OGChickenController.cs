@@ -40,7 +40,6 @@ public class OGChickenController : MonoBehaviour {
         anim.SetFloat("Speed", rigidbody2D.velocity.x);
         attackWait += Time.deltaTime;
         string trueproj = "Prefabs/" + projectile;
-        Debug.Log (trueproj);
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
             idleTime+=Time.deltaTime;
         }

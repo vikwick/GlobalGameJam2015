@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
 //		this.restart = GameObject.FindGameObjectWithTag("Restart");
 //		this.restart.SetActive(false);
 
-		int difficulty = 2;
+		int difficulty = 1;
 		StartGame(difficulty);
    }
 
@@ -48,8 +48,12 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (currRoom.GetComponent<Room>().enemies.Count);
 	    if(this.died()) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> ppleeease
 			this.gameOver();
         }
 
@@ -60,8 +64,16 @@ public class GameManager : MonoBehaviour {
 	        }
 		}
 
+<<<<<<< HEAD
 		cam.transform.position = new Vector3(currRoom.transform.position.x, currRoom.transform.position.y, -6f);
 }
+=======
+//			this.gameOver();
+		cam.transform.position = new Vector3(currRoom.transform.position.x, currRoom.transform.position.y, -6f);
+//        if (_enemy.HP <= (int)0){
+//            Destroy (enemy);
+//        }
+>>>>>>> ppleeease
 
 
 

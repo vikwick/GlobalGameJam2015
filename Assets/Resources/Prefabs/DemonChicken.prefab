@@ -12,7 +12,12 @@ GameObject:
   - 58: {fileID: 5813952}
   - 50: {fileID: 5013952}
   - 95: {fileID: 9513952}
+<<<<<<< HEAD
   - 114: {fileID: 11414312}
+=======
+  - 114: {fileID: 11436986}
+  - 114: {fileID: 11470144}
+>>>>>>> ppleeease
   m_Layer: 0
   m_Name: DemonChicken
   m_TagString: Enemy
@@ -27,7 +32,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.4700003, y: -.860000014, z: 0}
+  m_LocalPosition: {x: 24.6113605, y: -.882115424, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,8 +61,8 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Radius: 1.14874935
-  m_Center: {x: -.0700000003, y: -.280000001}
+  m_Radius: .529517293
+  m_Center: {x: -.0700000003, y: -.219999999}
 --- !u!95 &9513952
 Animator:
   serializedVersion: 3
@@ -73,7 +78,11 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+<<<<<<< HEAD
 --- !u!114 &11414312
+=======
+--- !u!114 &11436986
+>>>>>>> ppleeease
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -81,9 +90,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 113952}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: c405378cb856d594e8afa5341eae2dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+=======
+  m_Script: {fileID: 11500000, guid: 6411140a5cac99a43b78f9ee1c57d58b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ATK: 0
+  HP: 0
+  SPD: 0
+  RNG: 0
+  attackpath: {x: 0, y: 0, z: 0}
+  p: {fileID: 0}
+  _player: {fileID: 0}
+  anim: {fileID: 0}
+  projectile: {fileID: 0}
+--- !u!114 &11470144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eede4c563e07edd4bb5d4466f12921c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxProjSpeed: 0
+>>>>>>> ppleeease
 --- !u!212 &21213952
 SpriteRenderer:
   m_ObjectHideFlags: 1

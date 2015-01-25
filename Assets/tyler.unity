@@ -202,6 +202,8 @@ MonoBehaviour:
   ATK: 5
   currentHP: 100
   OGChickenVec: {x: 0, y: 0}
+  projectile: 
+  attackWait: .5
 --- !u!58 &1248910283
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -2,9 +2,7 @@
 using System.Collections;
 
 public class SSCollectable : Collectable {
-    GameObject player;
-    OGChickenController _player;
-    Animator anim;
+    
     // Use this for initialization
     void Start () {
     
@@ -16,13 +14,21 @@ public class SSCollectable : Collectable {
     }
     void OnCollisionEnter2D(Collision2D c){
 
+<<<<<<< HEAD
         player = GameManager.player;
+=======
+		player = GameManager.player;
+>>>>>>> ppleeease
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         anim.SetBool("MustacheIdle", false);
         anim.SetBool("SSIdle", true);
         anim.SetBool("Circuit", true);
+<<<<<<< HEAD
         _player.ATK += 20;
+=======
+		_player.ATK += 20;
+>>>>>>> ppleeease
         _player.maxProjSpeed -= 3;
         _player.maxSpeed += 4f;
         _player.projectile = "SpiritBomb";

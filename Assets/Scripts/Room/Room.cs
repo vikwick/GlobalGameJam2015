@@ -12,8 +12,8 @@ public class Room : MonoBehaviour {
 	public int x;
 	public int y;
 	public GameObject item = null;
-	bool beaten = false;
-	ArrayList enemies = new ArrayList();
+	public bool beaten = false;
+	public ArrayList enemies = new ArrayList();
 
 	// Use this for initialization
 	void Start () {
@@ -24,7 +24,7 @@ public class Room : MonoBehaviour {
 
 	void Update()
 	{
-		if(enemies.Count==0)
+		if(enemies.Count==0 && ((GameObject)doors[0]).GetComponent<Door>().anim.GetBool("Locked"))
 		{
 			beaten = true;
 			for(int i=0; i<doors.Count; i++)
@@ -35,6 +35,14 @@ public class Room : MonoBehaviour {
 		if(item!=null && beaten)
 		{
 			item.SetActive(true);
+		}
+	}
+
+	public void alarm()
+	{
+		foreach(GameObject d in doors)
+		{
+			d.GetComponent<Door>().anim.SetBool("Locked", true);
 		}
 	}
 
@@ -83,19 +91,19 @@ public class Room : MonoBehaviour {
 			int r = Random.Range(0,GameManager.numEnemies);
 			if(r==0)
 			{
-//				enemies.Add(Instantiate(Resources.Load ("Prefabs/BusinessEnemy", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				enemies.Add(Instantiate(Resources.Load ("Prefabs/BusinessEnemy", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
 			}
 			else if(r==1)
 			{
-//				enemies.Add(Instantiate(Resources.Load ("Prefabs/DemonEgg", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				enemies.Add(Instantiate(Resources.Load ("Prefabs/DemonEgg", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
 			}
 			else if(r==2)
 			{
-//				enemies.Add(Instantiate(Resources.Load ("Prefabs/DemonChicken", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				enemies.Add(Instantiate(Resources.Load ("Prefabs/DemonChicken", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
 			}
 			else if(r==3)
 			{
-//				enemies.Add(Instantiate(Resources.Load ("Prefabs/LabCoat", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				enemies.Add(Instantiate(Resources.Load ("Prefabs/Scientist", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
 			}
 		}
 	}
@@ -118,5 +126,9 @@ public class Room : MonoBehaviour {
 			item.SetActive(false);
 		}
 	}
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> ppleeease

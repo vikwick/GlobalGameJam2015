@@ -32,6 +32,7 @@ public class Dungeon : MonoBehaviour {
 		int y = Random.Range(0,maxRooms);
 		start = generateRoom(x,y);
 		Room _room = start.GetComponent<Room>();
+		_room.beaten = true;
 		_room.start = true;
 		_room.x = x;
 		_room.y = y;
@@ -132,6 +133,7 @@ public class Dungeon : MonoBehaviour {
 					}
 					if(i==1 && contains(x,y-1) && map[x,y-1]!=null)
 					{
+						Debug.Log(map[x,y-1] + " " + map[x,y-1].dirs[0]);
 						_door.dst = map[x,y-1].dirs[0].GetComponent<Door>();
 					}
 					if(i==2 && contains(x-1,y) && map[x-1,y]!=null)
@@ -143,7 +145,6 @@ public class Dungeon : MonoBehaviour {
 						_door.dst = map[x+1,y].dirs[2].GetComponent<Door>();
 					}
 				}
-
 			}
 		}
 	}
@@ -174,7 +175,7 @@ public class Dungeon : MonoBehaviour {
 	public void placePlayer(Door d)
 	{
 		Vector2 pos = d.gameObject.transform.position;
-		int dist = 2;
+		float dist = 1.8f;
 		if(d.positionType==0)
 			pos.y -= dist;
 		else if(d.positionType==1)
@@ -184,6 +185,14 @@ public class Dungeon : MonoBehaviour {
 		else if(d.positionType==3)
 			pos.x -= dist;
 		GameManager.player.transform.position = pos;
+		Room r = d.transform.parent.GetComponent<Room>();
+		if(!r.beaten)
+		{
+			Debug.Log ("alarm");
+			r.populateEnemies(Random.Range(difficulty,difficulty*3));
+			r.alarm ();
+		}
+
 	}
 
 	public void placePlayer(GameObject r)
