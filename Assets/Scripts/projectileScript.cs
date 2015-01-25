@@ -4,6 +4,8 @@ using System.Collections;
 public class projectileScript : MonoBehaviour {
     GameObject p;
     OGChickenController _player;
+    GameObject enemy;
+    EnemyController _enemy;
     Animator anim;
     float rotationangle = 0f;
 	// Use this for initialization
@@ -33,7 +35,18 @@ public class projectileScript : MonoBehaviour {
             //transform.rotation = new Quaternion(0, 0, rotationangle, 0);
         //}
 	}
-	
+	void OnTriggerExit2D(Collider2D b){
+        if(b.gameObject.tag == "Enemy")
+        {
+            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            _enemy = enemy.GetComponent<EnemyController>();
+            _enemy.HP -= 5;
+        } 
+        if (b.gameObject.tag != "Player"){
+            Destroy(gameObject);
+        }  
+
+    }
 	// Update is called once per frame
 	void Update () {
 	

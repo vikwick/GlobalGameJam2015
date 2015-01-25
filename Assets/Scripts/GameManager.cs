@@ -4,9 +4,6 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
     GameObject player;
 	public static GameObject dungeon;
-    //GameObject enemy;
-    //EnemyController _enemy;
-
     GameObject enemy;
     EnemyController _enemy;
 
@@ -19,8 +16,8 @@ public class GameManager : MonoBehaviour {
 	    player = GameObject.FindGameObjectWithTag("Player");
         _player = player.GetComponent<OGChickenController>();
 		dungeon = GameObject.FindGameObjectWithTag("Dungeon");
-//        enemy = GameObject.FindGameObjectWithTag("Enemy");
-//        _enemy = enemy.GetComponent<EnemyController>();
+       enemy = GameObject.FindGameObjectWithTag("Enemy");
+       _enemy = enemy.GetComponent<EnemyController>();
         //door = GameObject.FindGameObjectWithTag("Door");
 		this.restart = GameObject.FindGameObjectWithTag("Restart");
 		this.restart.SetActive(false);
@@ -33,9 +30,9 @@ public class GameManager : MonoBehaviour {
 	    if(this.died()) {
 			this.gameOver();
         }
-//        if (_enemy.HP <= (int)0){
-//            Destroy (enemy);
-//        }
+        if (_enemy.HP <= (int)0){
+            Destroy (enemy);
+        }
         //if ((int)_enemy.currentEnemyCount == 0){
             //Destroy(door);
             //anim.SetBool(enemiesClear, true);
