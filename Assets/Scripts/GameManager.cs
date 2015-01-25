@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour {
     OGChickenController _player;
     //anim = GetComponent<Animator>();
 	// Use this for initialization
+	GameObject restart;
 	void Start () {
 	    player = GameObject.FindGameObjectWithTag("Player");
         _player = player.GetComponent<OGChickenController>();
         //enemy = GameObject.FindGameObjectWithTag("Enemy");
         //door = GameObject.FindGameObjectWithTag("Door");
+		this.restart = GameObject.FindGameObjectWithTag("Restart");
+		this.restart.SetActive(false);
 
    }
 	
@@ -40,11 +43,16 @@ public class GameManager : MonoBehaviour {
 	void gameOver(){
 		//kill player
 		Destroy(player);
-		// make ui show up
-		this.UIMessage("You Were Murdered");
+		// death message
+		this.deathMessage("You Were Murdered");
 	}
 
-	void UIMessage(string m){
+	void deathMessage(string m){
 		Message.instance.message = m;
+		this.restart.SetActive(true);
+	}
+
+	void restartGame(){
+		Application.LoadLevel("default");
 	}
 }
