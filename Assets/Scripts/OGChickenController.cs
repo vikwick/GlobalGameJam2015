@@ -12,6 +12,7 @@ public class OGChickenController : MonoBehaviour {
     public float currentHP = 100f;
     private float idleTime = 0f;
     public Vector2 OGChickenVec;
+    public string projectile;
     bool timesUp = false;
     GameObject enemy;
     EnemyController _enemy;
@@ -21,6 +22,7 @@ public class OGChickenController : MonoBehaviour {
             anim = GetComponent<Animator>();
             enemy = GameObject.FindGameObjectWithTag("Enemy");
             _enemy = enemy.GetComponent<EnemyController>();
+            projectile = "beak";
     }
     
     // Update is called once per frame
@@ -49,7 +51,7 @@ public class OGChickenController : MonoBehaviour {
         }
         if(Input.GetKey("space")){
             anim.SetBool("attacking", true);
-            GameObject beak = Instantiate(Resources.Load ("Prefabs/beak", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+            GameObject beak = Instantiate(Resources.Load ("Prefabs/" + projectile, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
         }
         else{
             anim.SetBool("attacking", false);

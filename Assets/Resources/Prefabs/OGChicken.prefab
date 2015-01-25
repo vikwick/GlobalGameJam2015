@@ -92,6 +92,7 @@ MonoBehaviour:
   ATK: 5
   currentHP: 100
   OGChickenVec: {x: 0, y: 0}
+  projectile: 
 --- !u!212 &21237202
 SpriteRenderer:
   m_ObjectHideFlags: 1

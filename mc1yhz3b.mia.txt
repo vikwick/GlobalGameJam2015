@@ -1,0 +1,97 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# rebase in progress; onto a327d8f
+# You are currently rebasing branch 'hopeWorks' on 'a327d8f'.
+#
+# Changes to be committed:
+#	new file:   Assets/AttackSpeedCollectable.cs
+#	new file:   Assets/AttackSpeedCollectable.cs.meta
+#	new file:   Assets/AttackUpCollectable.cs
+#	new file:   Assets/AttackUpCollectable.cs.meta
+#	modified:   Assets/Cris.unity
+#	new file:   Assets/MustacheCollectable.cs
+#	new file:   Assets/MustacheCollectable.cs.meta
+#	new file:   Assets/Resources/Animation/MustacheDownWalk.anim
+#	new file:   Assets/Resources/Animation/MustacheDownWalk.anim.meta
+#	new file:   Assets/Resources/Animation/MustacheIdle.anim
+#	new file:   Assets/Resources/Animation/MustacheIdle.anim.meta
+#	new file:   Assets/Resources/Animation/MustacheLeftWalk.anim
+#	new file:   Assets/Resources/Animation/MustacheLeftWalk.anim.meta
+#	new file:   Assets/Resources/Animation/MustacheRightWalk.anim
+#	new file:   Assets/Resources/Animation/MustacheRightWalk.anim.meta
+#	new file:   Assets/Resources/Animation/MustacheUpWalk.anim
+#	new file:   Assets/Resources/Animation/MustacheUpWalk.anim.meta
+#	modified:   Assets/Resources/Animation/OGChicken.controller
+#	new file:   Assets/Resources/Animation/SSDownWalk.anim
+#	new file:   Assets/Resources/Animation/SSDownWalk.anim.meta
+#	new file:   Assets/Resources/Animation/SSLeftWalk.anim
+#	new file:   Assets/Resources/Animation/SSLeftWalk.anim.meta
+#	new file:   Assets/Resources/Animation/SSRightWalk.anim
+#	new file:   Assets/Resources/Animation/SSRightWalk.anim.meta
+#	new file:   Assets/Resources/Animation/SSUpWalk.anim
+#	new file:   Assets/Resources/Animation/SSUpWalk.anim.meta
+#	new file:   Assets/Resources/Animation/SuperSaiyanIdle.anim
+#	new file:   Assets/Resources/Animation/SuperSaiyanIdle.anim.meta
+#	new file:   Assets/Resources/Prefabs/AttackSpeedCollectable.prefab
+#	new file:   Assets/Resources/Prefabs/AttackSpeedCollectable.prefab.meta
+#	new file:   Assets/Resources/Prefabs/AttackUpCollectable.prefab
+#	new file:   Assets/Resources/Prefabs/AttackUpCollectable.prefab.meta
+#	new file:   Assets/Resources/Prefabs/DemonChicken.prefab
+#	new file:   Assets/Resources/Prefabs/DemonChicken.prefab.meta
+#	new file:   Assets/Resources/Prefabs/DemonChickenEgg.prefab
+#	new file:   Assets/Resources/Prefabs/DemonChickenEgg.prefab.meta
+#	new file:   Assets/Resources/Prefabs/DemonEgg.prefab
+#	new file:   Assets/Resources/Prefabs/DemonEgg.prefab.meta
+#	new file:   Assets/Resources/Prefabs/Headprojectile.prefab
+#	new file:   Assets/Resources/Prefabs/Headprojectile.prefab.meta
+#	new file:   Assets/Resources/Prefabs/MustacheCollectable.prefab
+#	new file:   Assets/Resources/Prefabs/MustacheCollectable.prefab.meta
+#	new file:   Assets/Resources/Prefabs/SSCollectable.prefab
+#	new file:   Assets/Resources/Prefabs/SSCollectable.prefab.meta
+#	new file:   Assets/Resources/Prefabs/SpeedUpCollectable.prefab
+#	new file:   Assets/Resources/Prefabs/SpeedUpCollectable.prefab.meta
+#	modified:   Assets/Resources/Sprites/BusinessMan/Head2.png.meta
+#	modified:   Assets/Resources/Sprites/ChickenSpecial.meta
+#	modified:   Assets/Resources/Sprites/ChickenSpecial/ChickeninGoo.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken.meta
+#	new file:   Assets/Resources/Sprites/SSChicken/SSBolt.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenback1.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenback1.psd.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenback2.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenback2.psd.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenfront1.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenfront1.psd.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenfront2.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenfront2.psd.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenleft1.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenleft1.psd.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenleft2.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenleft2.psd.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenright1.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenright1.psd.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenright2.png.meta
+#	modified:   Assets/Resources/Sprites/SSChicken/SSChickenright2.psd.meta
+#	new file:   Assets/Resources/Sprites/Scientist.meta
+#	new file:   Assets/Resources/Sprites/Scientist/AcidBolt.png.meta
+#	new file:   Assets/Resources/Sprites/Scientist/AcidBolt.psd.meta
+#	new file:   Assets/Resources/Sprites/Scientist/AcidBolt.sai.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist1.png.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist1.psd.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist1.sai.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist2.png.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist2.psd.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist2.sai.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist3.png.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist3.psd.meta
+#	new file:   Assets/Resources/Sprites/Scientist/Scientist3.sai.meta
+#	new file:   Assets/Resources/Sprites/Scientist/ScientistAttack.png.meta
+#	new file:   Assets/Resources/Sprites/Scientist/ScientistAttack.psd.meta
+#	new file:   Assets/SSCollectable.cs
+#	new file:   Assets/SSCollectable.cs.meta
+#	new file:   Assets/Scripts/enemyProjectileScript.cs
+#	new file:   Assets/Scripts/enemyProjectileScript.cs.meta
+#	new file:   Assets/SpeedUpCollectable.cs
+#	new file:   Assets/SpeedUpCollectable.cs.meta
+#
+

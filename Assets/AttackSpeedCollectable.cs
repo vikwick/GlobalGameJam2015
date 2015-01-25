@@ -15,7 +15,7 @@ public class AttackSpeedCollectable : MonoBehaviour {
 	
 	}
     void OnCollisionEnter2D(Collision2D c){
-        player = GameManager.player
+        player = GameManager.player;
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         _player.maxProjSpeed += 5;

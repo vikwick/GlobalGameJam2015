@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7137d2e8801f88e49bcd45d49777ea77
+=======
+guid: e4259281e3a38fe45bb2ec4f7b88fef0
+>>>>>>> lots of animations
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
