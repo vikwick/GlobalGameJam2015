@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2d41d24c36e9bfd4a853edc8f75f7185
+=======
+guid: 78a91759d50d59640b8e23bd7cb963e1
+>>>>>>> CrisBranch
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
