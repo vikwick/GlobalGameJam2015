@@ -39,6 +39,7 @@ public class Door : MonoBehaviour {
 	public static void createDoors(GameObject floor, ArrayList doors, int type){
 		GameObject doorp = (GameObject)Resources.Load("Prefabs/door");
 		Floor fscript =  floor.GetComponent<Floor>();
+
 		GameObject door = Instantiate(doorp,fscript.top () , floor.transform.rotation) as GameObject;
 		door.transform.parent = floor.transform;
 		doors.Add(door);

@@ -6,6 +6,7 @@ public class Room : MonoBehaviour {
 
 	private Floor floorScript;
 	private GameObject f;
+
 	public ArrayList doors;
 	public GameObject[] dirs = {null, null, null, null}; // UP DOWN LEFT RIGHT
 	bool satisfied;

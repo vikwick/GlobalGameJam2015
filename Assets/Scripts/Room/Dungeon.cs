@@ -67,8 +67,8 @@ public class Dungeon : MonoBehaviour {
 	public static GameObject generateRoom(int x, int y)
 	{
 		GameObject r = Instantiate(Resources.Load ("Prefabs/Room", typeof(GameObject)), new Vector2(x*15,y*10), GameManager.dungeon.transform.rotation) as GameObject;
-//		r.transform.parent = GameManager.dungeon.transform;
-//		Room _r = r.GetComponent<Room>();
+		r.transform.parent = GameManager.dungeon.transform;
+		Room _r = r.GetComponent<Room>();
 		return r;
 	}
 	

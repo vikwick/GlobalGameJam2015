@@ -11,10 +11,14 @@ public class OGChickenController : MonoBehaviour {
     public float currentHP = 100f;
     private float idleTime = 0f;
     bool timesUp = false;
+    GameObject enemy;
+    EnemyController _enemy;
     Animator anim;
     // Use this for initialization
     void Start () {
             anim = GetComponent<Animator>();
+            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            _enemy = enemy.GetComponent<EnemyController>();
     }
     
     // Update is called once per frame
@@ -23,7 +27,6 @@ public class OGChickenController : MonoBehaviour {
     }
 
     void FixedUpdate () {
-
         anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 
         rigidbody2D.velocity = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
@@ -34,15 +37,18 @@ public class OGChickenController : MonoBehaviour {
         else{
             idleTime = 0;
         }
-        if((int)idleTime%3==0 && !timesUp){
+        if((int)idleTime%2==0 && !timesUp){
             timesUp = true;
         }
-        else if(((int)idleTime+1)%3==0 & timesUp){
+        else if(((int)idleTime+1)%2==0 & timesUp){
             timesUp = false;
             infectedLevel += 5;
         }
-        if(Input.GetButtonDown("attack")){
-            anim.SetTrigger("attacking");
+        if(Input.GetKey("space")){
+            anim.SetBool("attacking", true);
+        }
+        else{
+            anim.SetBool("attacking", false);
         }
 
     }
@@ -63,10 +69,4 @@ public class OGChickenController : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter2D(Collision2D c){
-        Debug.Log(c.gameObject.tag);
-        if (c.gameObject.tag == "Enemy" && !anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")){
-            currentHP -= 10f;
-        }
-    }
 }
