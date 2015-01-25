@@ -7,7 +7,7 @@ public class Floor : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.setSprite("Environment/floor");
-		this.scale(2,2);
+		this.scale(1,1);
 	}
 	
 	// Update is called once per frame
@@ -17,7 +17,7 @@ public class Floor : MonoBehaviour {
 
 	public static GameObject createFloor(int x, int y){
 		GameObject floor = (GameObject)Resources.Load("Prefabs/floor");
-		GameObject f = Instantiate(floor, new Vector2(15*x,10*y) ,GameManager.dungeon.transform.rotation) as GameObject;
+		GameObject f = Instantiate(floor, new Vector2(x,y), Quaternion.identity) as GameObject;
 		return f;
 	}
 	

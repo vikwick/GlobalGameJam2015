@@ -15,11 +15,11 @@ public class Room : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.f = Floor.createFloor(x, y);
-		f.transform.parent = gameObject.transform;
-//		this.doors = new ArrayList();
-//		Door.createDoors(this.f, this.doors);
-		GameObject wall = Instantiate(Resources.Load ("Prefabs/Wall", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+		int n = 16;
+		this.f = Floor.createFloor(n*x, n*y);
+		f.transform.parent = transform;
+		GameObject wall = Instantiate(Resources.Load ("Prefabs/Wall", typeof(GameObject)), new Vector2(n*x,n*y), transform.rotation) as GameObject;
+		wall.transform.parent = transform;
 	}
 	
 	// Update is called once per frame

@@ -16,12 +16,11 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	GameObject restart;
 	void Start () {
-		dungeon = Instantiate(Resources.Load ("Prefabs/Wall", typeof(GameObject))) as GameObject;
 	    player = GameObject.FindGameObjectWithTag("Player");
         _player = player.GetComponent<OGChickenController>();
-
-        enemy = GameObject.FindGameObjectWithTag("Enemy");
-        _enemy = enemy.GetComponent<EnemyController>();
+		dungeon = GameObject.FindGameObjectWithTag("Dungeon");
+//        enemy = GameObject.FindGameObjectWithTag("Enemy");
+//        _enemy = enemy.GetComponent<EnemyController>();
         //door = GameObject.FindGameObjectWithTag("Door");
 		this.restart = GameObject.FindGameObjectWithTag("Restart");
 		this.restart.SetActive(false);
@@ -34,9 +33,9 @@ public class GameManager : MonoBehaviour {
 	    if(this.died()) {
 			this.gameOver();
         }
-        if (_enemy.HP <= (int)0){
-            Destroy (enemy);
-        }
+//        if (_enemy.HP <= (int)0){
+//            Destroy (enemy);
+//        }
         //if ((int)_enemy.currentEnemyCount == 0){
             //Destroy(door);
             //anim.SetBool(enemiesClear, true);
@@ -58,7 +57,7 @@ public class GameManager : MonoBehaviour {
 
 	void deathMessage(string m){
 		Message.instance.message = m;
-		this.restart.SetActive(true);
+//		this.restart.SetActive(true);
 	}
 
 	void restartGame(){

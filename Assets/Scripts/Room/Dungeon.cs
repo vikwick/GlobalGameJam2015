@@ -3,13 +3,15 @@ using System.Collections;
 
 public class Dungeon : MonoBehaviour {
 
-	static int difficulty;
-	static ArrayList rooms = new ArrayList();
+	int difficulty;
+	int maxRooms;
+	ArrayList rooms = new ArrayList();
+	Room[,] map;
 
 	// Use this for initialization
 	void Start () {
-		Dungeon.generateDungeon(2);
-		GameManager.dungeon = gameObject;
+		generateDungeon(4);
+//		GameManager.dungeon = gameObject;
 	}
 	
 	// Update is called once per frame
@@ -20,11 +22,11 @@ public class Dungeon : MonoBehaviour {
 	/*
 	 * @param start True if a start room, false if a normal room
 	 */
-	public static void generateDungeon(int diff)
+	public void generateDungeon(int diff)
 	{
 		difficulty = diff;
-		int maxRooms = 8*difficulty;
-		Room[,] map = new Room[maxRooms, maxRooms];
+		maxRooms = 8*difficulty;
+		map = new Room[maxRooms, maxRooms];
 		int x = Random.Range(0,maxRooms);
 		int y = Random.Range(0,maxRooms);
 		GameObject start = generateRoom(x,y);
@@ -33,13 +35,14 @@ public class Dungeon : MonoBehaviour {
 		_room.y = y;
 		map[x,y] = _room;
 		rooms.Add(start);
+		_room.transform.parent = transform;
 
 		for(int i=1; i<maxRooms; i++)
 		{
 			int d = Random.Range(0,4);
 //			Debug.Log (x + " " + y);
 
-			while(!(x < maxRooms && x >= 0 && y < maxRooms && y >= 0) || ((x < maxRooms && x >= 0 && y < maxRooms && y >= 0) && map[x,y] != null))
+			while(!contains(x,y) || (contains(x,y) && map[x,y] != null) || (contains(x,y) && surrounded(x,y)))
 			{
 				x = _room.x;
 				y = _room.y;
@@ -59,20 +62,32 @@ public class Dungeon : MonoBehaviour {
 			_newRoom.x = x;
 			_newRoom.y = y;
 			map[x,y] = _newRoom;
+			_newRoom.transform.parent = transform;
 			_room = _newRoom;
 		}
-		return;
+//		r.transform.parent = GameManager.dungeon.transform;
 	}
 
-	public static GameObject generateRoom(int x, int y)
+	public bool surrounded(int x, int y)
 	{
-		GameObject r = Instantiate(Resources.Load ("Prefabs/Room", typeof(GameObject)), new Vector2(x*15,y*10), GameManager.dungeon.transform.rotation) as GameObject;
-		r.transform.parent = GameManager.dungeon.transform;
+		if(contains(x,y) && map[x+1,y] && map[x-1,y] && map[x,y+1] && map[x,y-1] && map[x+1,y+1] && map[x-1,y+1] && map[x+1,y-1] && map[x-1,y-1])
+			return true;
+		return false;
+	}
+
+	public bool contains(int x, int y)
+	{
+		return x < maxRooms && x >= 0 && y < maxRooms && y >= 0;
+	}
+
+	public GameObject generateRoom(int x, int y)
+	{
+		GameObject r = Instantiate(Resources.Load ("Prefabs/Room", typeof(GameObject)), new Vector2(x,y), GameManager.dungeon.transform.rotation) as GameObject;
 		Room _r = r.GetComponent<Room>();
 		return r;
 	}
 	
-	static void generateEnemies()
+	void generateEnemies()
 	{
 		int r = Random.Range(1,8);
 		for(int i=0; i<r; i++)
@@ -82,7 +97,7 @@ public class Dungeon : MonoBehaviour {
 		}
 	}
 	
-	static void generateItems()
+	void generateItems()
 	{
 		
 	}
