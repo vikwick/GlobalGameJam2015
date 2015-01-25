@@ -10,7 +10,7 @@ public class Wall : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.setSprite("Environment/walls");
-		this.scale(2,2);
+		this.scale(1,1);
 		this.gameObject.AddComponent<PolygonCollider2D>();
 
 	}
