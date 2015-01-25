@@ -42,7 +42,7 @@ public class Dungeon : MonoBehaviour {
 			int d = Random.Range(0,4);
 //			Debug.Log (x + " " + y);
 
-			while(!contains(x,y) || (contains(x,y) && map[x,y] != null) || (contains(x,y) && surrounded(x,y)))
+			while(!contains(x,y) || (contains(x,y) && map[x,y] != null && !surrounded(x,y)))
 			{
 				x = _room.x;
 				y = _room.y;
@@ -70,7 +70,7 @@ public class Dungeon : MonoBehaviour {
 
 	public bool surrounded(int x, int y)
 	{
-		if(contains(x,y) && map[x+1,y] && map[x-1,y] && map[x,y+1] && map[x,y-1] && map[x+1,y+1] && map[x-1,y+1] && map[x+1,y-1] && map[x-1,y-1])
+		if(contains(x,y) && map[x+1,y]!=null && map[x-1,y]!=null && map[x,y+1]!=null && map[x,y-1]!=null && map[x+1,y+1]!=null && map[x-1,y+1]!=null && map[x+1,y-1]!=null && map[x-1,y-1]!=null)
 			return true;
 		return false;
 	}
