@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour {
 
 
 	bool died(){
-		return ((int)_player.currentHP == 0 || (int)_player.infectedLevel == 10);
+		return ((int)_player.currentHP == 0 || (int)_player.infectedLevel == 100);
 	}
 
 
