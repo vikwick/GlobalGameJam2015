@@ -10,6 +10,7 @@ public class OGChickenController : MonoBehaviour {
     public float ATK = 5f;
     public float currentHP = 100f;
     private float idleTime = 0f;
+    public Vector2 OGChickenVec;
     bool timesUp = false;
     GameObject enemy;
     EnemyController _enemy;
@@ -30,6 +31,7 @@ public class OGChickenController : MonoBehaviour {
         anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 
         rigidbody2D.velocity = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
+        OGChickenVec = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
         anim.SetFloat("Speed", rigidbody2D.velocity.x);
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
             idleTime+=Time.deltaTime;
@@ -46,6 +48,7 @@ public class OGChickenController : MonoBehaviour {
         }
         if(Input.GetKey("space")){
             anim.SetBool("attacking", true);
+            GameObject beak = Instantiate(Resources.Load ("Prefabs/beak", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
         }
         else{
             anim.SetBool("attacking", false);
