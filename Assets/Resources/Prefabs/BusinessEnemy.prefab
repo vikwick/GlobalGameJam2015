@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11447682}
   - 50: {fileID: 5038278}
   - 61: {fileID: 6149392}
+  - 95: {fileID: 9526336}
   m_Layer: 0
   m_Name: BusinessEnemy
   m_TagString: Enemy
@@ -57,6 +58,21 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_Size: {x: 4.63000011, y: 5.67000008}
   m_Center: {x: 0, y: -.419999987}
+--- !u!95 &9526336
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156544}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 54b7bbc88b0ca6f46a2ab8f1299f9de9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11447682
 MonoBehaviour:
   m_ObjectHideFlags: 1
