@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+guid: d7f887f2037cf8e49bc7aaec84225bfb
+=======
 guid: 81949c5d43beeba4e89c9173a2c3485a
+>>>>>>> 88dfb86113a0c8fc2947ae35b13808ba86113c11
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2

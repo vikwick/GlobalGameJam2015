@@ -3,21 +3,29 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
     GameObject player;
+	public static GameObject dungeon;
+    //GameObject enemy;
+    //EnemyController _enemy;
+
     GameObject enemy;
     EnemyController _enemy;
+
     //GameObject door;
     OGChickenController _player;
     //anim = GetComponent<Animator>();
 	// Use this for initialization
 	GameObject restart;
 	void Start () {
+		dungeon = Instantiate(Resources.Load ("Prefabs/Wall", typeof(GameObject))) as GameObject;
 	    player = GameObject.FindGameObjectWithTag("Player");
         _player = player.GetComponent<OGChickenController>();
+
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         _enemy = enemy.GetComponent<EnemyController>();
         //door = GameObject.FindGameObjectWithTag("Door");
 		this.restart = GameObject.FindGameObjectWithTag("Restart");
 		this.restart.SetActive(false);
+
 
    }
 	
