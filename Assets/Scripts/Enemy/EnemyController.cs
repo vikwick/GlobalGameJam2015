@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load("Sprites/BusinessMan/Businessman1") as Sprite);
+		this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 		//this.attacking = false;
 		anim = GetComponent<Animator>();
 
@@ -38,7 +40,10 @@ public class EnemyController : MonoBehaviour {
 		this.kill();
 	}
 
-
+	void FixedUpdate(){
+		//anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
+		//anim.SetFloat("Speed", rigidbody2D.velocity.x);
+	}
 
 	void OnCollisionEnter2D(Collision2D c)
 	{

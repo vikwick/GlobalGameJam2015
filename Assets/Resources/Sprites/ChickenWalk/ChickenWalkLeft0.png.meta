@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 069fbd9809ba5044f828e9ca920b1c43
+=======
+guid: 084f9ce1cd83a0b40b2e880f3e5a38f5
+>>>>>>> fix ani
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
