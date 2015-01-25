@@ -93,6 +93,7 @@ MonoBehaviour:
   currentHP: 100
   OGChickenVec: {x: 0, y: 0}
   projectile: 
+  attackWait: .5
 --- !u!212 &21237202
 SpriteRenderer:
   m_ObjectHideFlags: 1

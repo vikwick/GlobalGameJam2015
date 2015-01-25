@@ -19,9 +19,17 @@ public class MustacheCollectable : MonoBehaviour {
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         anim.SetBool("MustacheIdle", true);
+        anim.SetBool("SSIdle", false);
+        anim.SetBool("Circuit", true);
         _player.maxSpeed += 6f;
         _player.maxProjSpeed += 4;
         _player.projectile = "taco";
+    }
+    void OnCollisionExit2D(Collision2D b){
+        player = GameManager.player;
+        _player = player.GetComponent<OGChickenController>();
+        anim = player.GetComponent<Animator>();
+        anim.SetBool("Circuit", false);
         Destroy(gameObject);
     }
 }

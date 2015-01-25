@@ -17,25 +17,29 @@ public class OGChickenController : MonoBehaviour {
     GameObject enemy;
     EnemyController _enemy;
     Animator anim;
+    public float attackWait = 0.5f;
     // Use this for initialization
     void Start () {
             anim = GetComponent<Animator>();
             enemy = GameObject.FindGameObjectWithTag("Enemy");
             _enemy = enemy.GetComponent<EnemyController>();
-            projectile = "beak";
+    }
+    void OnEnable(){
+        projectile = "beak";
     }
     
     // Update is called once per frame
     void Update () {
-
     }
 
     void FixedUpdate () {
         anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
-
         rigidbody2D.velocity = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
         OGChickenVec = new Vector2 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         anim.SetFloat("Speed", rigidbody2D.velocity.x);
+        attackWait += Time.deltaTime;
+        string trueproj = "Prefabs/" + projectile;
+        Debug.Log (trueproj);
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
             idleTime+=Time.deltaTime;
         }
@@ -49,14 +53,14 @@ public class OGChickenController : MonoBehaviour {
             timesUp = false;
             infectedLevel += 5;
         }
-        if(Input.GetKey("space")){
+        if(Input.GetKey("space") && attackWait >= 0.5f){
             anim.SetBool("attacking", true);
-            GameObject beak = Instantiate(Resources.Load ("Prefabs/" + projectile, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+            GameObject beak = Instantiate(Resources.Load (trueproj, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+            attackWait = 0f;
         }
         else{
             anim.SetBool("attacking", false);
         }
-
     }
 
     void OnGUI(){

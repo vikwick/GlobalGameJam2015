@@ -38,6 +38,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: Circuit
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 3
     m_Name: Base Layer
@@ -286,6 +292,10 @@ Transition:
     m_ConditionEvent: SSIdle
     m_EventTreshold: 0
     m_ExitTime: .899999976
+  - m_ConditionMode: 1
+    m_ConditionEvent: Circuit
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -404,6 +414,10 @@ Transition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: MustacheIdle
+    m_EventTreshold: 0
+    m_ExitTime: .899999976
+  - m_ConditionMode: 1
+    m_ConditionEvent: Circuit
     m_EventTreshold: 0
     m_ExitTime: .899999976
   m_Atomic: 1
@@ -958,52 +972,6 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110232568}
-      second:
-      - {fileID: 110148752}
-      - {fileID: 110141956}
-      - {fileID: 110198622}
-      - {fileID: 110124888}
-    data:
-      first: {fileID: 110232570}
-      second:
-      - {fileID: 110100900}
-    data:
-      first: {fileID: 110232572}
-      second:
-      - {fileID: 110194658}
-    data:
-      first: {fileID: 110232574}
-      second:
-      - {fileID: 110170158}
-    data:
-      first: {fileID: 110232576}
-      second:
-      - {fileID: 110169666}
-    data:
-      first: {fileID: 110252528}
-      second:
-      - {fileID: 110118138}
-    data:
-      first: {fileID: 110252526}
-      second:
-      - {fileID: 110128532}
-    data:
-      first: {fileID: 110252524}
-      second:
-      - {fileID: 110177166}
-      - {fileID: 110127946}
-      - {fileID: 110172436}
-      - {fileID: 110114720}
-    data:
-      first: {fileID: 110252522}
-      second:
-      - {fileID: 110198998}
-    data:
-      first: {fileID: 110252520}
-      second:
-      - {fileID: 110175970}
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110141302}
@@ -1035,6 +1003,52 @@ StateMachine:
       first: {fileID: 110238104}
       second:
       - {fileID: 110152868}
+    data:
+      first: {fileID: 110252520}
+      second:
+      - {fileID: 110175970}
+    data:
+      first: {fileID: 110252522}
+      second:
+      - {fileID: 110198998}
+    data:
+      first: {fileID: 110252524}
+      second:
+      - {fileID: 110177166}
+      - {fileID: 110127946}
+      - {fileID: 110172436}
+      - {fileID: 110114720}
+    data:
+      first: {fileID: 110252526}
+      second:
+      - {fileID: 110128532}
+    data:
+      first: {fileID: 110252528}
+      second:
+      - {fileID: 110118138}
+    data:
+      first: {fileID: 110232576}
+      second:
+      - {fileID: 110169666}
+    data:
+      first: {fileID: 110232574}
+      second:
+      - {fileID: 110170158}
+    data:
+      first: {fileID: 110232572}
+      second:
+      - {fileID: 110194658}
+    data:
+      first: {fileID: 110232570}
+      second:
+      - {fileID: 110100900}
+    data:
+      first: {fileID: 110232568}
+      second:
+      - {fileID: 110148752}
+      - {fileID: 110141956}
+      - {fileID: 110198622}
+      - {fileID: 110124888}
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 396, y: 60, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
