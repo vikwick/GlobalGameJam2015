@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 5ad45c78f76771c4a8fa3578ad83a2c1
+=======
+guid: 8343fffc359f38a47b2b692c499147ce
+>>>>>>> tylerbranch
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2

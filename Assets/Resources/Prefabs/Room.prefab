@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11444740}
   m_Layer: 0
   m_Name: Room
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,6 +39,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5549441e071d8f448f575193341521d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorScript: {fileID: 0}
+  f: {fileID: 0}
+  dirs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  x: 0
+  y: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

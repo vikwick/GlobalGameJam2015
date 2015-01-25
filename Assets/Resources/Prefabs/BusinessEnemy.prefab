@@ -81,13 +81,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 156544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6411140a5cac99a43b78f9ee1c57d58b, type: 3}
+  m_Script: {fileID: 11500000, guid: 554b970f091dd6e4e9a76d30971ea955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ATK: 0
-  HP: 5
+  HP: 0
   SPD: 0
-  RNG: 10
+  RNG: 0
   attackpath: {x: 0, y: 0, z: 0}
 --- !u!212 &21256544
 SpriteRenderer:

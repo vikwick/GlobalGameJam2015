@@ -5,8 +5,9 @@ public class Door : MonoBehaviour {
 	//change door pivot to be bottom
 
 	public int positionType;
-	Room src;
-	Room dst;
+	public Room src;
+	public Room dst;
+	public Animator anim;
 
 	void OnMouseDown(){
 		Debug.Log ("click");
@@ -15,69 +16,28 @@ public class Door : MonoBehaviour {
 	void Start () {
 		this.setSprite("door");
 		this.gameObject.AddComponent<BoxCollider2D>();
-
-		if(positionType == 1){
-			gameObject.transform.Rotate(new Vector3(0,0,-90));
-			gameObject.transform.position = gameObject.transform.position + this.getWidth()*Vector3.right;
+		anim = GetComponent<Animator>();
+		if(positionType == 0)
+		{
+			
 		}
-
-		if(positionType == 2){
-			gameObject.transform.Rotate(new Vector3(0,0,90));
-			gameObject.transform.position = gameObject.transform.position + this.getWidth()*-1f*Vector3.right;
-		}
-		if(positionType == 4){
+		else if(positionType == 1){
 			Vector3 newScale = gameObject.transform.localScale;
 			newScale.x *= -1;
 			newScale.y *= -1;
 			this.gameObject.transform.localScale = newScale;
 			this.gameObject.transform.position = gameObject.transform.position + this.getHeight()*1f*Vector3.down;
 		}
+		else if(positionType == 2){
+			gameObject.transform.Rotate(new Vector3(0,0,90));
+			gameObject.transform.position = gameObject.transform.position + this.getWidth()*-1f*Vector3.right;
+		}
+		else if(positionType == 3){
+			gameObject.transform.Rotate(new Vector3(0,0,-90));
+			gameObject.transform.position = gameObject.transform.position + this.getWidth()*Vector3.right;
+		}
 
 		this.gameObject.transform.position = gameObject.transform.position - new Vector3(0,0,1);
-	}
-
-	public static void createDoors(GameObject floor, ArrayList doors, int type){
-		GameObject doorp = (GameObject)Resources.Load("Prefabs/door");
-		Floor fscript =  floor.GetComponent<Floor>();
-
-		GameObject door = Instantiate(doorp,fscript.top () , floor.transform.rotation) as GameObject;
-		door.transform.parent = floor.transform;
-		doors.Add(door);
-
-		if(type == 0)
-		{
-
-		}
-		else if(type == 1)
-		{
-
-		}
-		else if(type == 2)
-		{
-			
-		}
-		else if(type == 3)
-		{
-			
-		}
-		if(Random.Range(0,2)== 0){
-			GameObject doorBottom = Instantiate(doorp, fscript.bottom() , floor.transform.rotation) as GameObject;
-			doorBottom.transform.parent = floor.transform;
-			doorBottom.GetComponent<Door>().positionType = 4;
-			doors.Add(doorBottom);
-		}
-		if(Random.Range(0,2)== 0){
-			GameObject doorRight= Instantiate(doorp, fscript.right() , floor.transform.rotation) as GameObject;
-			doorRight.transform.parent = floor.transform;
-			doorRight.GetComponent<Door>().positionType = 1;
-			doors.Add(doorRight);
-		}
-		if(Random.Range(0,2)== 0){
-			GameObject doorLeft= Instantiate(doorp, fscript.left() , floor.transform.rotation) as GameObject;
-			doorLeft.transform.parent = floor.transform;
-			doorLeft.GetComponent<Door>().positionType = 2;
-			doors.Add(doorLeft);
-		}
 	}
 
 	// Update is called once per frame
@@ -97,5 +57,13 @@ public class Door : MonoBehaviour {
 	
 	public void setSprite(string spritestring){
 		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Sprites/" + spritestring, typeof(Sprite));
+	}
+
+	void OnCollisionEnter2D(Collision2D c)
+	{
+		if(c.gameObject.tag == "Player" && !anim.GetBool("Locked"))
+		{
+			// send player to dst
+		}
 	}
 }

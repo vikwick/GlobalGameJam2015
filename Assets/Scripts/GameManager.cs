@@ -4,6 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
     GameObject player;
 	public static GameObject dungeon;
+	public static int numEnemies = 4;
     //GameObject enemy;
     //EnemyController _enemy;
 
