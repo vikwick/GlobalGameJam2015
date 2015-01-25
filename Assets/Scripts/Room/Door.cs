@@ -5,8 +5,8 @@ public class Door : MonoBehaviour {
 	//change door pivot to be bottom
 
 	public int positionType;
-	public Room src;
-	public Room dst;
+	public Door src;
+	public Door dst;
 	public Animator anim;
 
 	void OnMouseDown(){
@@ -15,7 +15,7 @@ public class Door : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.setSprite("door");
-		this.gameObject.AddComponent<BoxCollider2D>();
+//		this.gameObject.AddComponent<BoxCollider2D>();
 		anim = GetComponent<Animator>();
 		if(positionType == 0)
 		{
@@ -61,9 +61,12 @@ public class Door : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D c)
 	{
-		if(c.gameObject.tag == "Player" && !anim.GetBool("Locked"))
+		if(c.gameObject.tag == "Player")
 		{
+			GameManager.currRoom = dst.transform.parent.gameObject;
+			GameManager._dungeon.placePlayer(dst);
 			// send player to dst
+//			_r.populateEnemies(Random.Range (difficulty, difficulty*3));
 		}
 	}
 }

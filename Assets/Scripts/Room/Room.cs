@@ -8,9 +8,11 @@ public class Room : MonoBehaviour {
 	public GameObject f;
 	public ArrayList doors = new ArrayList();
 	public GameObject[] dirs = {null, null, null, null}; // UP DOWN LEFT RIGHT
-	bool satisfied;
+	public bool start = false;
 	public int x;
 	public int y;
+	public GameObject item = null;
+	bool beaten = false;
 	ArrayList enemies = new ArrayList();
 
 	// Use this for initialization
@@ -24,10 +26,15 @@ public class Room : MonoBehaviour {
 	{
 		if(enemies.Count==0)
 		{
+			beaten = true;
 			for(int i=0; i<doors.Count; i++)
 			{
 				((GameObject)doors[i]).GetComponent<Door>().anim.SetBool("Locked", false);
 			}
+		}
+		if(item!=null && beaten)
+		{
+			item.SetActive(true);
 		}
 	}
 
@@ -37,7 +44,7 @@ public class Room : MonoBehaviour {
 		f.transform.parent = transform;
 	}
 
-	public void createDoor(int type, Room src, Room dst)
+	public void createDoor(int type)
 	{
 		GameObject doorp = (GameObject)Resources.Load("Prefabs/Door");
 		GameObject door = null;
@@ -57,13 +64,17 @@ public class Room : MonoBehaviour {
 		{
 			door = Instantiate(doorp, floorScript.right() , f.transform.rotation) as GameObject;
 		}
+		dirs[type] = door;
 		door.transform.parent = transform;
 		Door _door = door.GetComponent<Door>();
 		_door.positionType = type;
-		_door.src = src;
-		_door.dst = dst;
 		doors.Add(door);
 	}
+
+//	public void linkDoors(Door src, Door dst)
+//	{
+//		src.dst = dst;
+//	}
 
 	public void populateEnemies(int num)
 	{
@@ -72,7 +83,7 @@ public class Room : MonoBehaviour {
 			int r = Random.Range(0,GameManager.numEnemies);
 			if(r==0)
 			{
-//				enemies.Add(Instantiate(Resources.Load ("Prefabs/BusinessMan", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+//				enemies.Add(Instantiate(Resources.Load ("Prefabs/BusinessEnemy", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
 			}
 			else if(r==1)
 			{
@@ -86,6 +97,30 @@ public class Room : MonoBehaviour {
 			{
 //				enemies.Add(Instantiate(Resources.Load ("Prefabs/LabCoat", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
 			}
+		}
 	}
+
+	public void populateItem()
+	{
+		if(Random.Range(0,100)<10)
+		{
+			int r = Random.Range(0,10);
+			if(r < 2)
+				item = Instantiate(Resources.Load ("Prefabs/AttackSpeedCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+			else if(r < 4)
+				item = Instantiate(Resources.Load ("Prefabs/AttackUpCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+			else if(r < 6)
+				item = Instantiate(Resources.Load ("Prefabs/MustacheCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+			else if(r < 8)
+				item = Instantiate(Resources.Load ("Prefabs/SpeedUpCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+			else
+				item = Instantiate(Resources.Load ("Prefabs/SSCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+			item.SetActive(false);
+		}
+	}
+<<<<<<< HEAD
 }
 }
+=======
+}
+>>>>>>> tylerbranch

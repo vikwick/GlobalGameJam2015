@@ -21,8 +21,8 @@ public class OGChickenController : MonoBehaviour {
     // Use this for initialization
     void Start () {
             anim = GetComponent<Animator>();
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
-            _enemy = enemy.GetComponent<EnemyController>();
+//            enemy = GameObject.FindGameObjectWithTag("Enemy");
+//            _enemy = enemy.GetComponent<EnemyController>();
     }
     void OnEnable(){
         projectile = "beak";

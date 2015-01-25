@@ -98,7 +98,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 440893045}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ca9eca7cdfde84469397272eb9edbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: e6e6f4332885ff546922c76300a0abaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &440893047
@@ -191,9 +191,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1248910281}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a090d46f2126143a395806054f3239, type: 3}
+  m_Script: {fileID: 11500000, guid: a477613f67eb23e48b80b85879abf91c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxSpeed: 10
+  maxProjSpeed: 10
+  HP: 100
+  infectedLevel: 0
+  ability: hello
+  ATK: 5
+  currentHP: 100
+  OGChickenVec: {x: 0, y: 0}
 --- !u!58 &1248910283
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -325,6 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3136ba7dba91964babe46fa58684513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start: {fileID: 0}
 --- !u!1 &1538833107
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,13 +388,13 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: .400000006
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

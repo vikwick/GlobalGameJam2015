@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AttackUpCollectable : MonoBehaviour {
+public class AttackUpCollectable : Collectable {
     GameObject player;
     OGChickenController _player;
     Animator anim;
@@ -15,7 +15,11 @@ public class AttackUpCollectable : MonoBehaviour {
     
     }
     void OnCollisionEnter2D(Collision2D c){
+<<<<<<< HEAD
         player = GameManager.player;
+=======
+		player = GameManager.player;
+>>>>>>> tylerbranch
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         _player.ATK += 5f;
