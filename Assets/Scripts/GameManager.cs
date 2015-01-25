@@ -36,9 +36,11 @@ public class GameManager : MonoBehaviour {
 			this.gameOver();
         }
 
-        if (_enemy.HP <= (int)0){
-            Destroy (enemy);
-        }
+		if(this.enemy!= null){
+	        if (_enemy.HP <= (int)0){
+	            Destroy (enemy);
+	        }
+		}
 
 
 

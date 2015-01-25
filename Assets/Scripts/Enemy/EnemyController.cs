@@ -8,29 +8,50 @@ public class EnemyController : MonoBehaviour {
 	public int SPD;
 	public int RNG;
 	public Vector3 attackpath;
-	GameObject p;
-	OGChickenController _player;
-	Animator anim;
-	GameObject head;
-
-	private bool attacking;
-	private Coroutine runningCoroutine;
+	public GameObject p;
+	public OGChickenController _player;
+	public Animator anim;
+	//GameObject head;
+	public GameObject projectile;
+	
+	public Coroutine runningCoroutine;
 
 
 	// Use this for initialization
 	void Start () {
-		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load("Sprites/BusinessMan/Businessman1") as Sprite);
-		this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-		//this.attacking = false;
+		this.setSprite(this.getSpriteString());
 		anim = GetComponent<Animator>();
-
 		p = GameObject.FindGameObjectWithTag("Player");
         _player = p.GetComponent<OGChickenController>();
-        
-		this.SPD = 1;
-		this.RNG = 5;
-		this.HP = 10;
-		this.head = Resources.Load ("Prefabs/Head1") as GameObject;
+		this.setStats(1, 5, 10);
+		this.setProjectile(this.getSpriteString());
+
+	}
+
+	public virtual string getProjectileString(){
+		return "Prefabs/Head1";
+	}
+
+	public virtual void setProjectile(string s){
+		if(s!=null){
+			//this.head = Resources.Load (s) as GameObject;
+			this.projectile = Resources.Load (s) as GameObject;
+		}
+	}
+
+	public virtual void setStats(int x, int y, int z){
+		this.SPD = x;
+		this.RNG = y;
+		this.HP = z;
+	}
+
+	public virtual string getSpriteString(){
+		return "Sprites/BusinessMan/Businessman1";
+	}
+
+	public virtual void setSprite(string s){
+		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load(s) as Sprite);
+		this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 	}
 	
 	// Update is called once per frame
@@ -45,7 +66,7 @@ public class EnemyController : MonoBehaviour {
 		//anim.SetFloat("Speed", rigidbody2D.velocity.x);
 	}
 
-	void OnCollisionEnter2D(Collision2D c)
+	public virtual void OnCollisionEnter2D(Collision2D c)
 	{
 		if(c.gameObject.tag == "Player")
 		{
@@ -60,7 +81,7 @@ public class EnemyController : MonoBehaviour {
 
 
 
-	void kill()
+	public virtual void kill()
 	{
 		if(p!= null){
 			Vector3 pos = p.transform.position;
@@ -83,7 +104,7 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	IEnumerator Attack() {
+	public virtual IEnumerator Attack() {
 		anim.SetBool("attack",true);
 		//attack();
 		this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -92,7 +113,7 @@ public class EnemyController : MonoBehaviour {
 		
 		//(pos - transform.position)
 		
-		GameObject head = Instantiate(this.head, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
+		GameObject head = Instantiate(this.projectile, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
 		head.transform.parent = this.transform;
 		head.AddComponent<BoxCollider2D>().isTrigger = true;
 
