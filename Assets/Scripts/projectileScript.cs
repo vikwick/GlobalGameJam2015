@@ -11,9 +11,18 @@ public class projectileScript : MonoBehaviour {
         p = GameObject.FindGameObjectWithTag("Player");
         _player = p.GetComponent<OGChickenController>();
         anim = GetComponent<Animator>();
-        rigidbody2D.velocity = 3 * _player.OGChickenVec;
-        rotationangle = Mathf.Rad2Deg*Mathf.Atan2(_player.OGChickenVec.y, _player.OGChickenVec.x);
-        transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
+        Vector2 projVector = new Vector2 (_player.OGChickenVec.x , _player.OGChickenVec.y );
+        projVector.Normalize();
+        if (_player.OGChickenVec.x == 0 && _player.OGChickenVec.y == 0){
+            rigidbody2D.velocity = _player.maxProjSpeed * new Vector2 (0, -1);
+            transform.rotation = Quaternion.Euler (new Vector3(0, 0, -90));
+        }
+        else {
+            rotationangle = Mathf.Rad2Deg*Mathf.Atan2(_player.OGChickenVec.y, _player.OGChickenVec.x);
+            transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
+            rigidbody2D.velocity = _player.maxProjSpeed * projVector;
+        }
+
         //if (_player.OGChickenVec.x < 0 && _player.OGChickenVec.y < 0){
             //transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
         //}
