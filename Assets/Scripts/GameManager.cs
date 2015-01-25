@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if ((int)_player.currentHP == 0 || (int)_player.infectedLevel == 10){
-            Destroy(player);
+	    if(this.died()) {
+			this.gameOver();
         }
         //if ((int)_enemy.enemyHP == 0){
             //Destroy (enemy);
@@ -29,5 +29,22 @@ public class GameManager : MonoBehaviour {
             //Destroy(door);
             //anim.SetBool(enemiesClear, true);
         //}
+	}
+
+
+	bool died(){
+		return ((int)_player.currentHP == 0 || (int)_player.infectedLevel == 10);
+	}
+
+
+	void gameOver(){
+		//kill player
+		Destroy(player);
+		// make ui show up
+		this.UIMessage("You Were Murdered");
+	}
+
+	void UIMessage(string m){
+		Message.instance.message = m;
 	}
 }

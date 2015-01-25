@@ -42,6 +42,8 @@ public class EnemyController : MonoBehaviour {
 
 	void attack()
 	{
+		this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+
 		// set attack bool to change animation
 
 	}
