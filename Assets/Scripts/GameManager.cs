@@ -2,13 +2,19 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-    GameObject player;
+
+
 	public static GameObject dungeon;
+
+
+    public static GameObject player;
+
+
     GameObject enemy;
     EnemyController _enemy;
 
     //GameObject door;
-    OGChickenController _player;
+    public static OGChickenController _player;
     //anim = GetComponent<Animator>();
 	// Use this for initialization
 	GameObject restart;
@@ -30,9 +36,14 @@ public class GameManager : MonoBehaviour {
 	    if(this.died()) {
 			this.gameOver();
         }
+
         if (_enemy.HP <= (int)0){
             Destroy (enemy);
         }
+
+
+
+
         //if ((int)_enemy.currentEnemyCount == 0){
             //Destroy(door);
             //anim.SetBool(enemiesClear, true);
