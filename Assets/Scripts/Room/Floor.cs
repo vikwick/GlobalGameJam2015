@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Floor : MonoBehaviour {
 
-	int n = 7;
+	int n = 6;
 	// Use this for initialization
 	void Start () {
 		this.setSprite("Environment/floor");

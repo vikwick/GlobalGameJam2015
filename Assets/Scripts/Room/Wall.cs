@@ -12,7 +12,6 @@ public class Wall : MonoBehaviour {
 		this.setSprite("Environment/walls");
 		this.scale(1,1);
 		this.gameObject.AddComponent<PolygonCollider2D>();
-
 	}
 	
 	// Update is called once per frame

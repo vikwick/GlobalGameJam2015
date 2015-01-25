@@ -7,10 +7,11 @@ public class Dungeon : MonoBehaviour {
 	int maxRooms;
 	ArrayList rooms = new ArrayList();
 	Room[,] map;
+	public GameObject start;
 
 	// Use this for initialization
 	void Start () {
-		generateDungeon(3);
+//		generateDungeon(2);
 //		GameManager.dungeon = gameObject;
 	}
 	
@@ -29,8 +30,9 @@ public class Dungeon : MonoBehaviour {
 		map = new Room[maxRooms, maxRooms];
 		int x = Random.Range(0,maxRooms);
 		int y = Random.Range(0,maxRooms);
-		GameObject start = generateRoom(x,y);
+		start = generateRoom(x,y);
 		Room _room = start.GetComponent<Room>();
+		_room.start = true;
 		_room.x = x;
 		_room.y = y;
 		map[x,y] = _room;
@@ -70,7 +72,7 @@ public class Dungeon : MonoBehaviour {
 		{
 			GameObject r = (GameObject)rooms[i];
 			Room _r = r.GetComponent<Room>();
-			if(surrounded (_r.x,_r.y))
+			if(surrounded (_r.x,_r.y) && r != start)
 			{
 				deadRooms.Add(r);
 				rooms.Remove(r);
@@ -94,19 +96,54 @@ public class Dungeon : MonoBehaviour {
 
 			if(contains(x,y+1) && map[x,y+1]!=null)
 			{
-				_r.createDoor(0, _r, map[x,y+1]);
+//				_r.createDoor(0, _r, map[x,y+1]);
+				_r.createDoor(0);
 			}
 			if(contains(x,y-1) && map[x,y-1]!=null)
 			{
-				_r.createDoor(1, _r, map[x,y-1]);
+//				_r.createDoor(1, _r, map[x,y-1]);
+				_r.createDoor(1);
 			}
 			if(contains(x-1,y) && map[x-1,y]!=null)
 			{
-				_r.createDoor(2, _r, map[x-1,y]);
+//				_r.createDoor(2, _r, map[x-1,y]);
+				_r.createDoor(2);
 			}
 			if(contains(x+1,y) && map[x+1,y]!=null)
 			{
-				_r.createDoor(3, _r, map[x+1,y]);
+//				_r.createDoor(3, _r, map[x+1,y]);
+				_r.createDoor(3);
+			}
+			_r.populateItem();
+		}
+		foreach(GameObject r in rooms)
+		{
+			Room _r = r.GetComponent<Room>();
+			x = _r.x;
+			y = _r.y;
+			for(int i=0; i<4; i++)
+			{
+				Door _door = _r.dirs[i]!=null ? _r.dirs[i].GetComponent<Door>() : null;
+				if (_door != null) {
+
+					if(i==0 && contains(x,y+1) && map[x,y+1]!=null)
+					{
+						_door.dst = map[x,y+1].dirs[1].GetComponent<Door>();
+					}
+					if(i==1 && contains(x,y-1) && map[x,y-1]!=null)
+					{
+						_door.dst = map[x,y-1].dirs[0].GetComponent<Door>();
+					}
+					if(i==2 && contains(x-1,y) && map[x-1,y]!=null)
+					{
+						_door.dst = map[x-1,y].dirs[3].GetComponent<Door>();
+					}
+					if(i==3 && contains(x+1,y) && map[x+1,y]!=null)
+					{
+						_door.dst = map[x+1,y].dirs[2].GetComponent<Door>();
+					}
+				}
+
 			}
 		}
 	}
@@ -127,24 +164,30 @@ public class Dungeon : MonoBehaviour {
 
 	public GameObject generateRoom(int x, int y)
 	{
-		GameObject r = Instantiate(Resources.Load ("Prefabs/Room", typeof(GameObject)), new Vector2(x,y), transform.rotation) as GameObject;
+		int n = 16;
+		GameObject r = Instantiate(Resources.Load ("Prefabs/Room", typeof(GameObject)), new Vector2(n*x,n*y), transform.rotation) as GameObject;
 		Room _r = r.GetComponent<Room>();
-		_r.createFloor(16*x, 16*y);
+		_r.createFloor(n*x, n*y);
 		return r;
 	}
-	
-	void generateEnemies()
+
+	public void placePlayer(Door d)
 	{
-		int r = Random.Range(1,8);
-		for(int i=0; i<r; i++)
-		{
-			// instantiate random enemies
-			// set currentRoom's enemies[]
-		}
+		Vector2 pos = d.gameObject.transform.position;
+		int dist = 2;
+		if(d.positionType==0)
+			pos.y -= dist;
+		else if(d.positionType==1)
+			pos.y += dist;
+		else if(d.positionType==2)
+			pos.x += dist;
+		else if(d.positionType==3)
+			pos.x -= dist;
+		GameManager.player.transform.position = pos;
 	}
-	
-	void generateItems()
+
+	public void placePlayer(GameObject r)
 	{
-		
+		GameManager.player.transform.position = r.transform.position;
 	}
 }

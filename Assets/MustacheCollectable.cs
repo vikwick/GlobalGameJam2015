@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MustacheCollectable : MonoBehaviour {
+public class MustacheCollectable : Collectable {
     GameObject player;
     OGChickenController _player;
     Animator anim;
@@ -15,7 +15,7 @@ public class MustacheCollectable : MonoBehaviour {
     
     }
     void OnCollisionEnter2D(Collision2D c){
-        player = GameManager.player
+		player = GameManager.player;
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         anim.SetBool("MustacheIdle", true);
