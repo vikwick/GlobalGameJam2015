@@ -3,26 +3,28 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 
-	public int ATK;
-	public int HP;
-	public int SPD;
-	public int RNG;
-	public Vector3 attackpath;
-	public GameObject p;
-	public OGChickenController _player;
-	public Animator anim;
-	//GameObject head;
-	public GameObject projectile;
 	
-	public Coroutine runningCoroutine;
+	public int ATK {get;set;}
+	public int HP {get;set;}
+	public int SPD {get;set;}
+	public int RNG {get;set;}
+	public Vector3 attackpath {get;set;}
+	public GameObject p {get;set;}
+	public OGChickenController _player {get;set;}
+	public Animator anim {get;set;}
+	//GameObject head;
+	public GameObject projectile {get;set;}
+	
+	public Coroutine runningCoroutine {get;set;}
+
 
 
 	// Use this for initialization
 	void Start () {
 		this.setSprite(this.getSpriteString());
-		anim = GetComponent<Animator>();
-		p = GameObject.FindGameObjectWithTag("Player");
-        _player = p.GetComponent<OGChickenController>();
+		this.anim = GetComponent<Animator>();
+		this.p = GameObject.FindGameObjectWithTag("Player");
+        this._player = p.GetComponent<OGChickenController>();
 		this.setStats(1, 5, 10);
 		this.setProjectile(this.getSpriteString());
 
@@ -34,8 +36,11 @@ public class EnemyController : MonoBehaviour {
 
 	public virtual void setProjectile(string s){
 		if(s!=null){
+			Debug.Log (s);
 			//this.head = Resources.Load (s) as GameObject;
-			this.projectile = Resources.Load (s) as GameObject;
+			this.projectile = (GameObject)(Resources.Load (s) as GameObject);
+		}else{
+			this.projectile = null;
 		}
 	}
 
@@ -59,11 +64,15 @@ public class EnemyController : MonoBehaviour {
 
 
 		this.kill();
+		if (this.HP <= (int)0){
+				Destroy (gameObject);
+			}
 	}
 
+
 	void FixedUpdate(){
-		//anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
-		//anim.SetFloat("Speed", rigidbody2D.velocity.x);
+		anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
+		anim.SetFloat("Speed", rigidbody2D.velocity.x);
 	}
 
 	public virtual void OnCollisionEnter2D(Collision2D c)
@@ -113,13 +122,13 @@ public class EnemyController : MonoBehaviour {
 		
 		//(pos - transform.position)
 		
-		GameObject head = Instantiate(this.projectile, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
+		GameObject head = Instantiate(Resources.Load ("Prefabs/Head1")as GameObject, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
 		head.transform.parent = this.transform;
 		head.AddComponent<BoxCollider2D>().isTrigger = true;
 
-		Debug.Log(Time.time);
+
 		yield return new WaitForSeconds(2);
-		Debug.Log(Time.time);
+	
 		this.runningCoroutine = null;
 		Destroy(head);
 	}

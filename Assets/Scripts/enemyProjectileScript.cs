@@ -12,7 +12,10 @@ public class enemyProjectileScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
-        _enemy = enemy.GetComponent<EnemyController>();
+
+		if(enemy!= null){ 
+			_enemy = enemy.GetComponent<EnemyController>();
+			if(_enemy!=null){
         anim = GetComponent<Animator>();
         Vector2 projVector = new Vector2 (_enemy.attackpath.x , _enemy.attackpath.y );
         projVector.Normalize();
@@ -20,6 +23,8 @@ public class enemyProjectileScript : MonoBehaviour {
         transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
         rigidbody2D.velocity = maxProjSpeed * projVector;
         }
+		}
+	}
 
     void OnTriggerExit2D(Collider2D b){
         if(b.gameObject.tag == "Player")

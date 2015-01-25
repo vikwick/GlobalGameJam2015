@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: b5e42d3b49577ac4ca0ca615fdccc499
+=======
+guid: 4ff7ab80d05e22444984cadb85a524b6
+>>>>>>> more enemies
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2

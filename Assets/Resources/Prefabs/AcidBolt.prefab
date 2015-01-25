@@ -12,6 +12,7 @@ GameObject:
   - 50: {fileID: 5033818}
   - 114: {fileID: 11433818}
   - 58: {fileID: 5833818}
+  - 114: {fileID: 11484968}
   m_Layer: 0
   m_Name: AcidBolt
   m_TagString: beak
@@ -69,6 +70,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxProjSpeed: 0
+--- !u!114 &11484968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 133818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af70aea2bce0495459816048c96155d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21233818
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -88,7 +100,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: dca6dd0b77311dd4699593d1c4c603e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

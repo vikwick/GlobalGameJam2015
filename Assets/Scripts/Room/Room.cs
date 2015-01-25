@@ -118,9 +118,5 @@ public class Room : MonoBehaviour {
 			item.SetActive(false);
 		}
 	}
-<<<<<<< HEAD
+
 }
-}
-=======
-}
->>>>>>> tylerbranch

@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 
 public class OGChickenController : MonoBehaviour {
+	private Coroutine runningCoroutine;
     public float maxSpeed = 10f;
     public int maxProjSpeed = 10;
     public float HP = 100f;
@@ -53,15 +54,24 @@ public class OGChickenController : MonoBehaviour {
             timesUp = false;
             infectedLevel += 5;
         }
+
         if(Input.GetKey("space") && attackWait >= 0.5f){
             anim.SetBool("attacking", true);
             GameObject beak = Instantiate(Resources.Load (trueproj, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
             attackWait = 0f;
+
         }
         else{
             anim.SetBool("attacking", false);
         }
     }
+
+	public IEnumerator fire(){
+		anim.SetBool("attacking", true);
+		GameObject beak = Instantiate(Resources.Load ("Prefabs/" + projectile, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+		yield return new WaitForSeconds(2);
+		this.runningCoroutine = null;
+	}
 
     void OnGUI(){
         float boxSizeInfected = (Screen.width / 2) / (100/infectedLevel);

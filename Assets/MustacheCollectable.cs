@@ -15,11 +15,7 @@ public class MustacheCollectable : Collectable {
     
     }
     void OnCollisionEnter2D(Collision2D c){
-<<<<<<< HEAD
         player = GameManager.player;
-=======
-		player = GameManager.player;
->>>>>>> tylerbranch
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         anim.SetBool("MustacheIdle", true);

@@ -49,32 +49,24 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    if(this.died()) {
-<<<<<<< HEAD
+
 			this.gameOver();
         }
+
 
 		if(this.enemy!= null){
 	        if (_enemy.HP <= (int)0){
 	            Destroy (enemy);
 	        }
 		}
-=======
-//			this.gameOver();
-        }
+
 		cam.transform.position = new Vector3(currRoom.transform.position.x, currRoom.transform.position.y, -6f);
-//        if (_enemy.HP <= (int)0){
-//            Destroy (enemy);
-//        }
->>>>>>> tylerbranch
+}
 
 
 
 
-        //if ((int)_enemy.currentEnemyCount == 0){
-            //Destroy(door);
-            //anim.SetBool(enemiesClear, true);
-        //}
-	}
+
 
 
 	bool died(){

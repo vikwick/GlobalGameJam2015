@@ -23,5 +23,11 @@ public class Head : MonoBehaviour {
 			Debug.Log ("Hit");
 			GameManager._player.currentHP -= 15;
 		}
+
+		else{
+			if(other.gameObject.tag!="Enemy"){
+				Destroy(gameObject);
+			}
+		}
 	}
 }

@@ -15,21 +15,14 @@ public class SSCollectable : Collectable {
     
     }
     void OnCollisionEnter2D(Collision2D c){
-<<<<<<< HEAD
+
         player = GameManager.player;
-=======
-		player = GameManager.player;
->>>>>>> tylerbranch
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         anim.SetBool("MustacheIdle", false);
         anim.SetBool("SSIdle", true);
-<<<<<<< HEAD
         anim.SetBool("Circuit", true);
         _player.ATK += 20;
-=======
-		_player.ATK += 20;
->>>>>>> tylerbranch
         _player.maxProjSpeed -= 3;
         _player.maxSpeed += 4f;
         _player.projectile = "SpiritBomb";
