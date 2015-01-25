@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
     GameObject player;
+	public static GameObject dungeon;
     //GameObject enemy;
     //EnemyController _enemy;
     //GameObject door;
@@ -10,11 +11,11 @@ public class GameManager : MonoBehaviour {
     //anim = GetComponent<Animator>();
 	// Use this for initialization
 	void Start () {
+		dungeon = Instantiate(Resources.Load ("Prefabs/Wall", typeof(GameObject))) as GameObject;
 	    player = GameObject.FindGameObjectWithTag("Player");
         _player = player.GetComponent<OGChickenController>();
         //enemy = GameObject.FindGameObjectWithTag("Enemy");
-        //door = GameObject.FindGameObjectWithTag("Door");
-
+		//door = GameObject.FindGameObjectWithTag("Door");
    }
 	
 	// Update is called once per frame

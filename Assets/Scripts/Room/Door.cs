@@ -5,6 +5,9 @@ public class Door : MonoBehaviour {
 	//change door pivot to be bottom
 
 	public int positionType;
+	Room src;
+	Room dst;
+
 	void OnMouseDown(){
 		Debug.Log ("click");
 	}
@@ -33,29 +36,49 @@ public class Door : MonoBehaviour {
 		this.gameObject.transform.position = gameObject.transform.position - new Vector3(0,0,1);
 	}
 
-	public static void createDoors(GameObject floor, ArrayList doors){
+	public static void createDoors(GameObject floor, ArrayList doors, int type){
 		GameObject doorp = (GameObject)Resources.Load("Prefabs/door");
 		Floor fscript =  floor.GetComponent<Floor>();
 		GameObject door = Instantiate(doorp,fscript.top () , floor.transform.rotation) as GameObject;
+		door.transform.parent = floor.transform;
 		doors.Add(door);
 
+		if(type == 0)
+		{
+
+		}
+		else if(type == 1)
+		{
+
+		}
+		else if(type == 2)
+		{
+			
+		}
+		else if(type == 3)
+		{
+			
+		}
 		if(Random.Range(0,2)== 0){
 			GameObject doorBottom = Instantiate(doorp, fscript.bottom() , floor.transform.rotation) as GameObject;
+			doorBottom.transform.parent = floor.transform;
 			doorBottom.GetComponent<Door>().positionType = 4;
 			doors.Add(doorBottom);
 		}
 		if(Random.Range(0,2)== 0){
 			GameObject doorRight= Instantiate(doorp, fscript.right() , floor.transform.rotation) as GameObject;
+			doorRight.transform.parent = floor.transform;
 			doorRight.GetComponent<Door>().positionType = 1;
 			doors.Add(doorRight);
 		}
 		if(Random.Range(0,2)== 0){
 			GameObject doorLeft= Instantiate(doorp, fscript.left() , floor.transform.rotation) as GameObject;
+			doorLeft.transform.parent = floor.transform;
 			doorLeft.GetComponent<Door>().positionType = 2;
 			doors.Add(doorLeft);
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 	

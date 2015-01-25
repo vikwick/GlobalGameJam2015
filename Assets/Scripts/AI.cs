@@ -3,9 +3,11 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
+	Dungeon dungeon;
+
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -16,21 +18,18 @@ public class AI : MonoBehaviour {
 	/*
 	 * @param start True if a start room, false if a normal room
 	 */
-	void generateRoom(bool start)
+	void generateDungeon()
 	{
-		if(start)
-		{
-
-		}
-		else
-		{
-			// instantiate specific prefab for room
-			// set GameManager currentRoom
-			generateEnemies();
-			// conditionally add items
-		}
+		// generate start room
+		
+		// instantiate specific prefab for room
+		// set GameManager currentRoom
+		generateEnemies();
+		// conditionally add items
+		
+		
 	}
-
+	
 	void generateEnemies()
 	{
 		int r = Random.Range(1,8);
@@ -40,9 +39,9 @@ public class AI : MonoBehaviour {
 			// set currentRoom's enemies[]
 		}
 	}
-
+	
 	void generateItems()
 	{
-
+		
 	}
 }
