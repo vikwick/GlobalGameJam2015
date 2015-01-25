@@ -4,6 +4,7 @@ using System;
 
 public class OGChickenController : MonoBehaviour {
     public float maxSpeed = 10f;
+    public int maxProjSpeed = 10;
     public float HP = 100f;
     public float infectedLevel = 0f;
     public string ability = "hello";
@@ -31,7 +32,7 @@ public class OGChickenController : MonoBehaviour {
         anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 
         rigidbody2D.velocity = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
-        OGChickenVec = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
+        OGChickenVec = new Vector2 (Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         anim.SetFloat("Speed", rigidbody2D.velocity.x);
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
             idleTime+=Time.deltaTime;
