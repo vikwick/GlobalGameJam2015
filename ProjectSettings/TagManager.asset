@@ -3,8 +3,9 @@
 --- !u!78 &1
 TagManager:
   tags:
+  - beak
+  - 
   - Enemy
-  - Restart
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

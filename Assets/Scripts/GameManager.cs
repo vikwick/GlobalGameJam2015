@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
     GameObject player;
-    //GameObject enemy;
-    //EnemyController _enemy;
+    GameObject enemy;
+    EnemyController _enemy;
     //GameObject door;
     OGChickenController _player;
     //anim = GetComponent<Animator>();
@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 	    player = GameObject.FindGameObjectWithTag("Player");
         _player = player.GetComponent<OGChickenController>();
-        //enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        _enemy = enemy.GetComponent<EnemyController>();
         //door = GameObject.FindGameObjectWithTag("Door");
 		this.restart = GameObject.FindGameObjectWithTag("Restart");
 		this.restart.SetActive(false);
@@ -25,9 +26,9 @@ public class GameManager : MonoBehaviour {
 	    if(this.died()) {
 			this.gameOver();
         }
-        //if ((int)_enemy.enemyHP == 0){
-            //Destroy (enemy);
-        //}
+        if (_enemy.HP <= (int)0){
+            Destroy (enemy);
+        }
         //if ((int)_enemy.currentEnemyCount == 0){
             //Destroy(door);
             //anim.SetBool(enemiesClear, true);

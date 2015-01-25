@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Attack
+  m_Name: Walking
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -18,13 +18,15 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 2b06fbf33959455449229c9e9383c27b, type: 3}
-    - time: .0833333358
-      value: {fileID: 21300000, guid: 59208972ba4bba041bec73f3770dc2b2, type: 3}
+      value: {fileID: 21300000, guid: 4f3b7f0d6bffdde43a323571ceb74e9b, type: 3}
     - time: .183333337
-      value: {fileID: 21300000, guid: 005078044c5d3d14698597ca059950c4, type: 3}
-    - time: 1.01666665
-      value: {fileID: 21300000, guid: 2b06fbf33959455449229c9e9383c27b, type: 3}
+      value: {fileID: 21300000, guid: 8d9394caa557fbb4c8f3dbc57f4459e9, type: 3}
+    - time: .433333337
+      value: {fileID: 21300000, guid: 4f3b7f0d6bffdde43a323571ceb74e9b, type: 3}
+    - time: .666666687
+      value: {fileID: 21300000, guid: dd7dc3dd418622940a3610493f5a164d, type: 3}
+    - time: .916666687
+      value: {fileID: 21300000, guid: 4f3b7f0d6bffdde43a323571ceb74e9b, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,14 +45,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 2b06fbf33959455449229c9e9383c27b, type: 3}
-    - {fileID: 21300000, guid: 59208972ba4bba041bec73f3770dc2b2, type: 3}
-    - {fileID: 21300000, guid: 005078044c5d3d14698597ca059950c4, type: 3}
-    - {fileID: 21300000, guid: 2b06fbf33959455449229c9e9383c27b, type: 3}
+    - {fileID: 21300000, guid: 4f3b7f0d6bffdde43a323571ceb74e9b, type: 3}
+    - {fileID: 21300000, guid: 8d9394caa557fbb4c8f3dbc57f4459e9, type: 3}
+    - {fileID: 21300000, guid: 4f3b7f0d6bffdde43a323571ceb74e9b, type: 3}
+    - {fileID: 21300000, guid: dd7dc3dd418622940a3610493f5a164d, type: 3}
+    - {fileID: 21300000, guid: 4f3b7f0d6bffdde43a323571ceb74e9b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 1.0333333
+    m_StopTime: .933333337
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
