@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 456d139e268c95544ad4ffeeae9e7724
+=======
+guid: a5ce32b036c5ee4458bff3c1e9ee4204
+>>>>>>> hope it works
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -25,7 +29,11 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
+<<<<<<< HEAD
     aniso: 16
+=======
+    aniso: -1
+>>>>>>> hope it works
     mipBias: -1
     wrapMode: -1
   nPOTScale: 0
