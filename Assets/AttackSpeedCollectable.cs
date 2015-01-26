@@ -22,6 +22,9 @@ public class AttackSpeedCollectable : Collectable {
 =======
 >>>>>>> ppleeease
         _player = player.GetComponent<OGChickenController>();
+        _player.ATKSPDUp = true;
+        _player.ATKUp = false;
+        _player.SPDUp = false;
         anim = player.GetComponent<Animator>();
         _player.maxProjSpeed += 5;
         Destroy(gameObject);

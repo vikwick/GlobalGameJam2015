@@ -14,6 +14,9 @@ public class OGChickenController : MonoBehaviour {
     private float idleTime = 0f;
     public Vector2 OGChickenVec;
     public string projectile;
+    public bool ATKSPDUp = false;
+    public bool ATKUp = false;
+    public bool SPDUp = false;
     bool timesUp = false;
     GameObject enemy;
     EnemyController _enemy;
@@ -22,8 +25,16 @@ public class OGChickenController : MonoBehaviour {
     // Use this for initialization
     void Start () {
             anim = GetComponent<Animator>();
+<<<<<<< HEAD
 //            enemy = GameObject.FindGameObjectWithTag("Enemy");
 //            _enemy = enemy.GetComponent<EnemyController>();
+=======
+            enemy = GameObject.FindGameObjectWithTag("Enemy");
+            if (enemy != null){
+                _enemy = enemy.GetComponent<EnemyController>();
+            }
+            
+>>>>>>> CrisBranch
     }
     void OnEnable(){
         projectile = "beak";
@@ -57,6 +68,15 @@ public class OGChickenController : MonoBehaviour {
         if(Input.GetKey("space") && attackWait >= 0.5f){
             anim.SetBool("attacking", true);
             GameObject beak = Instantiate(Resources.Load (trueproj, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+            if (ATKUp){
+                beak.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+            else if (ATKSPDUp){
+                beak.GetComponent<SpriteRenderer>().color = (new Color (0, 0, 255, 255));
+            }
+            else if (SPDUp){
+                beak.GetComponent<SpriteRenderer>().color = Color.green;
+            }
             attackWait = 0f;
 
         }

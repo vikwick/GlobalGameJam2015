@@ -23,6 +23,9 @@ public class SpeedUpCollectable : Collectable {
 >>>>>>> ppleeease
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
+        _player.SPDUp = true;
+        _player.ATKUp = false;
+        _player.ATKSPDUp = false;
         _player.maxSpeed += 6f;
         Destroy(gameObject);
     }

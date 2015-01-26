@@ -27,12 +27,27 @@ public class GameManager : MonoBehaviour {
 		currRoom = player;
         _player = player.GetComponent<OGChickenController>();
 		dungeon = GameObject.FindGameObjectWithTag("Dungeon");
+<<<<<<< HEAD
 		_dungeon = dungeon.GetComponent<Dungeon>();
 //        enemy = GameObject.FindGameObjectWithTag("Enemy");
 //        _enemy = enemy.GetComponent<EnemyController>();
         //door = GameObject.FindGameObjectWithTag("Door");
 //		this.restart = GameObject.FindGameObjectWithTag("Restart");
 //		this.restart.SetActive(false);
+=======
+       enemy = GameObject.FindGameObjectWithTag("Enemy");
+       if (enemy != null){
+            _enemy = enemy.GetComponent<EnemyController>();
+        }
+
+        //door = GameObject.FindGameObjectWithTag("Door");
+		this.restart = GameObject.FindGameObjectWithTag("Restart");
+        if (this.restart != null){
+            this.restart.SetActive(false);     
+        }
+
+
+>>>>>>> CrisBranch
 
 		int difficulty = 1;
 		StartGame(difficulty);
