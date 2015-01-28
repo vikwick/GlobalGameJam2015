@@ -9,144 +9,187 @@ public class Dungeon : MonoBehaviour {
 	Room[,] map;
 	public GameObject start;
 
-	// Use this for initialization
-	void Start () {
-//		generateDungeon(2);
-//		GameManager.dungeon = gameObject;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
 	/*
-	 * @param start True if a start room, false if a normal room
+	 * Completely generates a new dungeon based on the
+	 * difficulty setting.
+	 * 
+	 * @param diff Difficulty level of the dungeon.
 	 */
 	public void generateDungeon(int diff)
 	{
 		difficulty = diff;
 		maxRooms = 8*difficulty;
 		map = new Room[maxRooms, maxRooms];
+
+		createRooms();
+		pruneRooms();
+		createDoors();
+		linkDoors();
+		positionDungeonAtOrigin();
+	}
+
+	/*
+	 * Creates all of the rooms, giving them legal positions based
+	 * on the 2D map[,].
+	 */
+	void createRooms()
+	{
 		int x = Random.Range(0,maxRooms);
 		int y = Random.Range(0,maxRooms);
-		start = generateRoom(x,y);
-		Room _room = start.GetComponent<Room>();
+		GameObject room = generateRoom(x,y);
+		Room _room = room.GetComponent<Room>();
+		_room.roomNum = 0;
 		_room.beaten = true;
 		_room.start = true;
 		_room.x = x;
 		_room.y = y;
 		map[x,y] = _room;
-		rooms.Add(start);
+		rooms.Add(room);
 		_room.transform.parent = transform;
-
+//		Debug.Log(maxRooms + " max rooms");
 		for(int i=1; i<maxRooms; i++)
 		{
-			int d = Random.Range(0,4);
-
 			while(!contains(x,y) || (contains(x,y) && map[x,y] != null))
 			{
 				x = _room.x;
 				y = _room.y;
-				d = Random.Range(0,6);
-
+				int d = Random.Range(0,4);
+				
 				if(d==0)			// UP
 					y++;
-				else if(d>0 && d<3)	// DOWN
+				else if(d==1)		// DOWN				
 					y--;
-				else if(d>2 && d<5)	// LEFT
+				else if(d==2)		// LEFT
 					x--;
-				else if(d==5)		// RIGHT
+				else if(d==3)		// RIGHT
 					x++;
 			}
 			rooms.Add(generateRoom(x, y));
 			Room _newRoom = ((GameObject)rooms[i]).GetComponent<Room>();
+			_newRoom.roomNum = i;
 			_newRoom.x = x;
 			_newRoom.y = y;
 			map[x,y] = _newRoom;
 			_newRoom.transform.parent = transform;
 			_room = _newRoom;
 		}
+	}
 
-		ArrayList deadRooms = new ArrayList();
+	/*
+	 * Prunes any undesirable rooms, removing them from all
+	 * data structures and destroying them.
+	 */
+	void pruneRooms()
+	{
 		for(int i=0; i<rooms.Count; i++)
 		{
 			GameObject r = (GameObject)rooms[i];
 			Room _r = r.GetComponent<Room>();
-			if(surrounded (_r.x,_r.y) && r != start)
+			if(surrounded (_r.x,_r.y))
 			{
-				deadRooms.Add(r);
 				rooms.Remove(r);
 				map[_r.x,_r.y] = null;
-				maxRooms--;
+//				maxRooms--;
+				i--;
+				Destroy(r);
 			}
 		}
-		int n = deadRooms.Count;
-		for(int i=0; i<n; i++)
+		for(int i=0; i<maxRooms; i++)
 		{
-			Destroy((GameObject)deadRooms[0]);
+			for(int j=0; j<maxRooms; j++)
+			{
+				if(map[i,j] != null)
+				{
+					Debug.Log(map[i,j].roomNum + " at x = " + i + ", y = " + j);
+				}
+			}
 		}
-		GameObject rap = (GameObject) rooms[0];
-		Room _rap = rap.GetComponent<Room>();
+	}
 
+	/*
+	 * Creates doors based on the positions of rooms in map[,] and
+	 * also allows for items to randomly spawn in rooms (necessary to
+	 * do here for efficiency).
+	 */
+	void createDoors()
+	{
+		start = (GameObject)rooms[Random.Range(0,rooms.Count)];
 		foreach(GameObject r in rooms)
 		{
 			Room _r = r.GetComponent<Room>();
-			x = _r.x;
-			y = _r.y;
-
+			int x = _r.x;
+			int y = _r.y;
+			
 			if(contains(x,y+1) && map[x,y+1]!=null)
 			{
-//				_r.createDoor(0, _r, map[x,y+1]);
 				_r.createDoor(0);
 			}
 			if(contains(x,y-1) && map[x,y-1]!=null)
 			{
-//				_r.createDoor(1, _r, map[x,y-1]);
 				_r.createDoor(1);
 			}
 			if(contains(x-1,y) && map[x-1,y]!=null)
 			{
-//				_r.createDoor(2, _r, map[x-1,y]);
 				_r.createDoor(2);
 			}
 			if(contains(x+1,y) && map[x+1,y]!=null)
 			{
-//				_r.createDoor(3, _r, map[x+1,y]);
 				_r.createDoor(3);
 			}
-			_r.populateItem();
+			if(r != start)
+				_r.populateItem();
 		}
+	}
+
+	/*
+	 * Links all adjacent doors to one another, effectively completing
+	 * the dungeon.
+	 */
+	void linkDoors()
+	{
 		foreach(GameObject r in rooms)
 		{
 			Room _r = r.GetComponent<Room>();
-			x = _r.x;
-			y = _r.y;
+			int x = _r.x;
+			int y = _r.y;
 			for(int i=0; i<4; i++)
 			{
 				Door _door = _r.dirs[i]!=null ? _r.dirs[i].GetComponent<Door>() : null;
+				Debug.Log("Source: " + _r.roomNum);
 				if (_door != null) {
-
+					
 					if(i==0 && contains(x,y+1) && map[x,y+1]!=null)
 					{
+						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+						Debug.Log(map[x,y+1].roomNum);
 						_door.dst = map[x,y+1].dirs[1].GetComponent<Door>();
 					}
-					if(i==1 && contains(x,y-1) && map[x,y-1]!=null)
+					else if(i==1 && contains(x,y-1) && map[x,y-1]!=null)
 					{
-						Debug.Log(map[x,y-1] + " " + map[x,y-1].dirs[0]);
+						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+						Debug.Log(map[x,y-1].roomNum);
 						_door.dst = map[x,y-1].dirs[0].GetComponent<Door>();
 					}
-					if(i==2 && contains(x-1,y) && map[x-1,y]!=null)
+					else if(i==2 && contains(x-1,y) && map[x-1,y]!=null)
 					{
+						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+						Debug.Log(map[x-1,y].roomNum);
 						_door.dst = map[x-1,y].dirs[3].GetComponent<Door>();
 					}
-					if(i==3 && contains(x+1,y) && map[x+1,y]!=null)
+					else if(i==3 && contains(x+1,y) && map[x+1,y]!=null)
 					{
+						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+						Debug.Log(map[x+1,y].roomNum);
 						_door.dst = map[x+1,y].dirs[2].GetComponent<Door>();
 					}
 				}
 			}
 		}
+	}
+	
+	void positionDungeonAtOrigin()
+	{
+		transform.position = new Vector2(-start.transform.position.x,-start.transform.position.y);
 	}
 
 	public bool surrounded(int x, int y)
@@ -172,6 +215,12 @@ public class Dungeon : MonoBehaviour {
 		return r;
 	}
 
+	/*
+	 * Calculates correct position to place player at and
+	 * alerts the room of the new "intruder".
+	 * 
+	 * @param d Door to spawn player at.
+	 */
 	public void placePlayer(Door d)
 	{
 		Vector2 pos = d.gameObject.transform.position;
@@ -184,15 +233,9 @@ public class Dungeon : MonoBehaviour {
 			pos.x += dist;
 		else if(d.positionType==3)
 			pos.x -= dist;
-		GameManager.player.transform.position = pos;
-		Room r = d.transform.parent.GetComponent<Room>();
-		if(!r.beaten)
-		{
-			Debug.Log ("alarm");
-			r.populateEnemies(Random.Range(difficulty,difficulty*3));
-			r.alarm ();
-		}
 
+		Room r = d.transform.parent.GetComponent<Room>();
+		r.playerEntered(pos);
 	}
 
 	public void placePlayer(GameObject r)

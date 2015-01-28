@@ -39,8 +39,8 @@ public class projectileScript : MonoBehaviour {
         if(b.gameObject.tag == "Enemy")
         {
             enemy = GameObject.FindGameObjectWithTag("Enemy");
-            _enemy = enemy.GetComponent<EnemyController>();
-            if(_enemy != null)	_enemy.HP -= 5;
+//            enemy.GetComponent(enemy.tag).HP ;
+//            _enemy.HP -= 5;
         } 
         if (b.gameObject.tag != "Player"){
             Destroy(gameObject);

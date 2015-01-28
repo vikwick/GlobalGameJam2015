@@ -25,16 +25,7 @@ public class DemonChicken : EnemyController {
 		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load(s) as Sprite);
 		this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-		
-		this.kill();
-		if (this.HP <= (int)0){
-			Destroy (gameObject);
-		}
-	}
+
 	
 	
 	void FixedUpdate(){

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 	public static GameObject dungeon;
 	public static Dungeon _dungeon;
 	public static int numEnemies = 4;
+	public static int difficulty = 2;
     //GameObject enemy;
     //EnemyController _enemy;
     public static GameObject player;
@@ -23,7 +24,8 @@ public class GameManager : MonoBehaviour {
 
 	void Start () {
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
-	    player = GameObject.FindGameObjectWithTag("Player");
+//	    player = GameObject.FindGameObjectWithTag("Player");
+		player = Instantiate (Resources.Load("Prefabs/OGChicken") as GameObject, transform.position, transform.rotation) as GameObject;
 		currRoom = player;
         _player = player.GetComponent<OGChickenController>();
 		dungeon = GameObject.FindGameObjectWithTag("Dungeon");
@@ -33,72 +35,49 @@ public class GameManager : MonoBehaviour {
         //door = GameObject.FindGameObjectWithTag("Door");
 //		this.restart = GameObject.FindGameObjectWithTag("Restart");
 //		this.restart.SetActive(false);
-
-		int difficulty = 1;
-		StartGame(difficulty);
+		StartGame(GameManager.difficulty);
    }
 
 	void StartGame(int diff)
 	{
 		_dungeon.generateDungeon(diff);
-		dungeon.transform.position = new Vector3(0,0,0);
 		currRoom = _dungeon.start;
 		_dungeon.placePlayer(currRoom);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		Debug.Log (currRoom.GetComponent<Room>().enemies.Count);
+	void Update ()
+	{
 	    if(this.died()) {
-<<<<<<< HEAD
-
-=======
->>>>>>> ppleeease
 			this.gameOver();
         }
 
-
-		if(this.enemy!= null){
-	        if (_enemy.HP <= (int)0){
-	            Destroy (enemy);
-	        }
-		}
-
-<<<<<<< HEAD
 		cam.transform.position = new Vector3(currRoom.transform.position.x, currRoom.transform.position.y, -6f);
-}
-=======
-//			this.gameOver();
-		cam.transform.position = new Vector3(currRoom.transform.position.x, currRoom.transform.position.y, -6f);
-//        if (_enemy.HP <= (int)0){
-//            Destroy (enemy);
-//        }
->>>>>>> ppleeease
-
-
-
-
-
+	}
 
 
 	bool died(){
-		return ((int)_player.currentHP <= 0 || (int)_player.infectedLevel == 100);
+		return (_player.currentHP <= 0 || _player.infectedLevel == 100);
 	}
 
 
 	void gameOver(){
 		//kill player
 		Destroy(player);
+		currRoom.GetComponent<Room>().reset();
 		// death message
 		this.deathMessage("You Were Murdered");
+		currRoom = _dungeon.start;
+		player = Instantiate (Resources.Load("Prefabs/OGChicken") as GameObject, currRoom.transform.position, currRoom.transform.rotation) as GameObject;
+		_player = player.GetComponent<OGChickenController>();
+		_dungeon.placePlayer(currRoom);
 	}
 
 	void deathMessage(string m){
-		Message.instance.message = m;
-		this.restart.SetActive(true);
+		/* REDO? */
 	}
 
-	void restartGame(){
-		Application.LoadLevel("default");
-	}
+//	void restartGame(){
+//		Application.LoadLevel("default");
+//	}
 }

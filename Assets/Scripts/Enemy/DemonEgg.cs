@@ -19,7 +19,7 @@ public class DemonEgg : EnemyController {
 
 	public override void kill ()
 	{
-		base.kill ();
+//		base.kill ();
 	}
 
 	public override string getSpriteString(){

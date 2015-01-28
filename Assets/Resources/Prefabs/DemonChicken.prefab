@@ -12,19 +12,14 @@ GameObject:
   - 58: {fileID: 5813952}
   - 50: {fileID: 5013952}
   - 95: {fileID: 9513952}
-<<<<<<< HEAD
-  - 114: {fileID: 11414312}
-=======
   - 114: {fileID: 11436986}
-  - 114: {fileID: 11470144}
->>>>>>> ppleeease
   m_Layer: 0
   m_Name: DemonChicken
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &413952
 Transform:
   m_ObjectHideFlags: 1
@@ -78,11 +73,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-<<<<<<< HEAD
---- !u!114 &11414312
-=======
 --- !u!114 &11436986
->>>>>>> ppleeease
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -90,36 +81,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 113952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: c405378cb856d594e8afa5341eae2dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
-  m_Script: {fileID: 11500000, guid: 6411140a5cac99a43b78f9ee1c57d58b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ATK: 0
-  HP: 0
-  SPD: 0
-  RNG: 0
-  attackpath: {x: 0, y: 0, z: 0}
-  p: {fileID: 0}
-  _player: {fileID: 0}
-  anim: {fileID: 0}
-  projectile: {fileID: 0}
---- !u!114 &11470144
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eede4c563e07edd4bb5d4466f12921c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxProjSpeed: 0
->>>>>>> ppleeease
+  r: {fileID: 0}
 --- !u!212 &21213952
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -139,7 +104,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 400e9ca48baa3954cad73a379aec158a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000

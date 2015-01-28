@@ -13,18 +13,20 @@ public class Room : MonoBehaviour {
 	public int y;
 	public GameObject item = null;
 	public bool beaten = false;
+	public bool visited = false;
 	public ArrayList enemies = new ArrayList();
+	public int roomNum;
 
 	// Use this for initialization
 	void Start () {
-		int n = 16;
-		GameObject wall = Instantiate(Resources.Load ("Prefabs/Wall", typeof(GameObject)), new Vector2(n*x,n*y), transform.rotation) as GameObject;
+		int n = 14;
+		GameObject wall = Instantiate(Resources.Load ("Prefabs/Wall", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
 		wall.transform.parent = transform;
 	}
 
 	void Update()
 	{
-		if(enemies.Count==0 && ((GameObject)doors[0]).GetComponent<Door>().anim.GetBool("Locked"))
+		if(enemies.Count==0 && doors.Count>0 && ((GameObject)doors[0]).GetComponent<Door>().anim.GetBool("Locked"))
 		{
 			beaten = true;
 			for(int i=0; i<doors.Count; i++)
@@ -40,14 +42,23 @@ public class Room : MonoBehaviour {
 
 	public void alarm()
 	{
+		visited = true;
 		foreach(GameObject d in doors)
 		{
 			d.GetComponent<Door>().anim.SetBool("Locked", true);
 		}
 	}
 
+	public void reset()
+	{
+		foreach(GameObject d in doors)
+		{
+			d.GetComponent<Door>().anim.SetBool("Locked", false);
+		}
+	}
+
 	public void createFloor(int x, int y) {
-		f = Instantiate(Resources.Load("Prefabs/Floor", typeof(GameObject)), new Vector2(x,y), Quaternion.identity) as GameObject;
+		f = Instantiate(Resources.Load("Prefabs/Floor", typeof(GameObject)), new Vector2(x,y), transform.rotation) as GameObject;
 		floorScript = f.GetComponent<Floor>();
 		f.transform.parent = transform;
 	}
@@ -72,6 +83,7 @@ public class Room : MonoBehaviour {
 		{
 			door = Instantiate(doorp, floorScript.right() , f.transform.rotation) as GameObject;
 		}
+
 		dirs[type] = door;
 		door.transform.parent = transform;
 		Door _door = door.GetComponent<Door>();
@@ -91,26 +103,34 @@ public class Room : MonoBehaviour {
 			int r = Random.Range(0,GameManager.numEnemies);
 			if(r==0)
 			{
-				enemies.Add(Instantiate(Resources.Load ("Prefabs/BusinessEnemy", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				GameObject en = Instantiate(Resources.Load ("Prefabs/BusinessEnemy", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				enemies.Add(en);
+				en.GetComponent<EnemyController>().r = this;
 			}
 			else if(r==1)
 			{
-				enemies.Add(Instantiate(Resources.Load ("Prefabs/DemonEgg", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				GameObject en = Instantiate(Resources.Load ("Prefabs/DemonEgg", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				enemies.Add(en);
+				en.GetComponent<DemonEgg>().r = this;
 			}
 			else if(r==2)
 			{
-				enemies.Add(Instantiate(Resources.Load ("Prefabs/DemonChicken", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				GameObject en = Instantiate(Resources.Load ("Prefabs/DemonChicken", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				enemies.Add(en);
+				en.GetComponent<DemonChicken>().r = this;
 			}
 			else if(r==3)
 			{
-				enemies.Add(Instantiate(Resources.Load ("Prefabs/Scientist", typeof(GameObject)), transform.position, transform.rotation) as GameObject);
+				GameObject en = Instantiate(Resources.Load ("Prefabs/Scientist", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				enemies.Add(en);
+				en.GetComponent<Scientist>().r = this;
 			}
 		}
 	}
 
 	public void populateItem()
 	{
-		if(Random.Range(0,100)<10)
+		if(Random.Range(0,100)<90)
 		{
 			int r = Random.Range(0,10);
 			if(r < 2)
@@ -124,11 +144,18 @@ public class Room : MonoBehaviour {
 			else
 				item = Instantiate(Resources.Load ("Prefabs/SSCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
 			item.SetActive(false);
+			item.transform.parent = transform;
 		}
 	}
-<<<<<<< HEAD
 
+	public void playerEntered(Vector2 pos)
+	{
+		GameManager.player.transform.position = pos;
+		if(!beaten)
+		{
+			if (!visited)
+				populateEnemies(Random.Range(GameManager.difficulty,GameManager.difficulty*2));
+			alarm ();
+		}
+	}
 }
-=======
-}
->>>>>>> ppleeease

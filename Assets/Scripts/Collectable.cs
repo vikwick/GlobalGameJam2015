@@ -15,7 +15,7 @@ public class Collectable : MonoBehaviour {
 	
 	}
 
-	void OnCollisionExit2D(Collision2D b){
+	public virtual void OnCollisionExit2D(Collision2D b){
 		player = GameManager.player;
 		_player = player.GetComponent<OGChickenController>();
 		anim = player.GetComponent<Animator>();
