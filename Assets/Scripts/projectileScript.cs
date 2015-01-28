@@ -29,18 +29,9 @@ public class projectileScript : MonoBehaviour {
 	void OnTriggerExit2D(Collider2D b){
         if(b.gameObject.tag == "Enemy")
         {
-            enemy = GameObject.FindGameObjectWithTag("Enemy");
-<<<<<<< HEAD
-            _enemy = enemy.GetComponent<EnemyController>();
+			_enemy = b.gameObject.GetComponent<EnemyController>();
             if(_enemy != null)	_enemy.HP -= 5;
-=======
-            if (enemy!=null){
-                _enemy = enemy.GetComponent<EnemyController>();
-                _enemy.HP -= 5;
-            }
-
->>>>>>> CrisBranch
-        } 
+		}
         if (b.gameObject.tag != "Player" && b.gameObject.tag!= "Door" && b.gameObject.tag!="Wall"){
             Destroy(gameObject);
         }  

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpeedUpCollectable : Collectable {
+public class AttackUpCollectable : Collectable {
     GameObject player;
     OGChickenController _player;
     Animator anim;
@@ -15,18 +15,13 @@ public class SpeedUpCollectable : Collectable {
     
     }
     void OnCollisionEnter2D(Collision2D c){
-<<<<<<< HEAD
-        player = GameManager.player;
-=======
-
 		player = GameManager.player;
->>>>>>> ppleeease
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
-        _player.SPDUp = true;
-        _player.ATKUp = false;
+        _player.ATKUp = true;
         _player.ATKSPDUp = false;
-        _player.maxSpeed += 6f;
+        _player.SPDUp = false;
+        _player.ATK += 5;
         Destroy(gameObject);
     }
 }

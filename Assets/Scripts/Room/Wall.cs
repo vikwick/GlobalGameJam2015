@@ -3,11 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Wall : MonoBehaviour {
-	
 
-
-
-	// Use this for initialization
 	void Start () {
 		this.setSprite("Environment/walls");
 		this.scale(1,1);
@@ -30,8 +26,4 @@ public class Wall : MonoBehaviour {
 	public void scale(int x, int y){
 		this.gameObject.transform.localScale = new Vector3(x, y, 0);
 	}
-
-
-
-
 }

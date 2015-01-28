@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour {
 	public GameObject projectile {get;set;}
 	
 	public Coroutine runningCoroutine {get;set;}
-
+	public Room r;
 
 
 	// Use this for initialization
@@ -36,7 +36,6 @@ public class EnemyController : MonoBehaviour {
 
 	public virtual void setProjectile(string s){
 		if(s!=null){
-			Debug.Log (s);
 			//this.head = Resources.Load (s) as GameObject;
 			this.projectile = (GameObject)(Resources.Load (s) as GameObject);
 		}else{
@@ -61,12 +60,11 @@ public class EnemyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-
 		this.kill();
-		if (this.HP <= (int)0){
-				Destroy (gameObject);
-			}
+		if (this.HP <= 0){
+			r.enemies.Remove(gameObject);
+			Destroy (gameObject);
+		}
 	}
 
 
@@ -79,15 +77,16 @@ public class EnemyController : MonoBehaviour {
 	{
 		if(c.gameObject.tag == "Player")
 		{
-			_player.currentHP -= 10f;
+			_player.currentHP -= 10;
 		}
-
-		if(c.gameObject.tag == "beak")
-		{
-			this.HP -= 10;
-		}	
 	}
 
+	void OnTriggerExit2D(Collider2D b){
+		if(b.gameObject.tag == "beak")
+		{
+			HP -= _player.ATK;
+		}
+	}
 
 
 	public virtual void kill()
@@ -101,13 +100,9 @@ public class EnemyController : MonoBehaviour {
 				if(this.runningCoroutine==null){
 					this.runningCoroutine = StartCoroutine(this.Attack());
 				}
-
-
 			}
 			else{
 				anim.SetBool("attack", false);
-
-
 			}
 			attackpath = (pos - transform.position);
 		}

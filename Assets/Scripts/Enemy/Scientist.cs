@@ -26,15 +26,7 @@ public class Scientist : EnemyController {
 		this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-		
-		this.kill();
-		if (this.HP <= (int)0){
-			Destroy (gameObject);
-		}
-	}
+
 	
 	
 	void FixedUpdate(){

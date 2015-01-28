@@ -49,7 +49,7 @@ public class RaktharController : MonoBehaviour {
     {
         if(c.gameObject.tag == "Player")
         {
-            _player.currentHP -= 10f;
+            _player.currentHP -= 10;
         }
 
         if(c.gameObject.tag == "beak")

@@ -15,13 +15,7 @@ public class MustacheCollectable : Collectable {
     
     }
     void OnCollisionEnter2D(Collision2D c){
-<<<<<<< HEAD
         player = GameManager.player;
-=======
-
-        player = GameManager.player;
-
->>>>>>> ppleeease
         _player = player.GetComponent<OGChickenController>();
         anim = player.GetComponent<Animator>();
         anim.SetBool("MustacheIdle", true);
@@ -31,6 +25,7 @@ public class MustacheCollectable : Collectable {
         _player.maxProjSpeed += 4;
         _player.projectile = "taco";
     }
+
     void OnCollisionExit2D(Collision2D b){
         player = GameManager.player;
         _player = player.GetComponent<OGChickenController>();

@@ -9,9 +9,6 @@ public class Door : MonoBehaviour {
 	public Door dst;
 	public Animator anim;
 
-	void OnMouseDown(){
-		Debug.Log ("click");
-	}
 	// Use this for initialization
 	void Start () {
 		this.setSprite("door");

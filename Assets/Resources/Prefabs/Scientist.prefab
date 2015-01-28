@@ -12,11 +12,7 @@ GameObject:
   - 50: {fileID: 5021186}
   - 212: {fileID: 21221186}
   - 61: {fileID: 6121186}
-<<<<<<< HEAD
-  - 114: {fileID: 11434514}
-=======
   - 114: {fileID: 11448090}
->>>>>>> ppleeease
   m_Layer: 0
   m_Name: Scientist
   m_TagString: Enemy
@@ -31,11 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
-  m_LocalPosition: {x: -.460000008, y: -.860000014, z: 0}
-=======
   m_LocalPosition: {x: 29.2555981, y: -3.6686573, z: 0}
->>>>>>> ppleeease
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,7 +44,7 @@ Rigidbody2D:
   m_GravityScale: 0
   m_FixedAngle: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
 --- !u!61 &6121186
@@ -77,15 +69,11 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 244e43f7631ce6b46a9862e3941b0aa4, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-<<<<<<< HEAD
---- !u!114 &11434514
-=======
 --- !u!114 &11448090
->>>>>>> ppleeease
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,24 +81,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 121186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 52d5e3b6d9ec6e0418d387c8484883d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-=======
-  m_Script: {fileID: 11500000, guid: 6411140a5cac99a43b78f9ee1c57d58b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ATK: 0
-  HP: 0
-  SPD: 0
-  RNG: 0
-  attackpath: {x: 0, y: 0, z: 0}
-  p: {fileID: 0}
-  _player: {fileID: 0}
-  anim: {fileID: 0}
-  projectile: {fileID: 0}
->>>>>>> ppleeease
+  r: {fileID: 0}
 --- !u!212 &21221186
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -130,7 +104,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e3d4f28577095e9489df576d0750f130, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
