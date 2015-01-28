@@ -21,6 +21,6 @@ public class AttackUpCollectable : Collectable {
         anim = player.GetComponent<Animator>();
         _player.ATK += 5;
         Destroy(gameObject);
-		GameManager._player.ATKUp = true;
+		_player.ATKUp = true;
     }
 }
