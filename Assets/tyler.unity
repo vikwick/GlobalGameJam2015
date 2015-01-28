@@ -156,6 +156,10 @@ Prefab:
       propertyPath: m_TagString
       value: Dungeon
       objectReference: {fileID: 0}
+    - target: {fileID: 159272, guid: c276c2f1a213dcc498dea6845ba59bcd, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c276c2f1a213dcc498dea6845ba59bcd, type: 2}
   m_RootGameObject: {fileID: 1433803759}

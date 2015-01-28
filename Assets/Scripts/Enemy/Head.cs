@@ -20,7 +20,6 @@ public class Head : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if(other.gameObject.tag == "Player"){
-			Debug.Log ("Hit");
 			GameManager._player.currentHP -= 15;
 		}
 

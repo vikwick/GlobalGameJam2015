@@ -60,23 +60,59 @@ public class OGChickenController : MonoBehaviour {
 			timesUp = false;
 			infectedLevel += 5;
 		}
-		
-		if(Input.GetKey("space") && attackWait >= 0.5f && !runningCoroutine){
-			//            anim.SetBool("attacking", true);
-			//            GameObject beak = Instantiate(Resources.Load (trueproj, typeof(GameObject)), new Vector2(0,transform.position.y), transform.rotation) as GameObject;
-			//            attackWait = 0f;
-			StartCoroutine(fire ());
-			
+//		if (Input.GetButtonDown("Fire1"))
+//		{
+//			Debug.Log(Input.GetButtonDown("Fire1"));
+//		}
+//		if(Input.GetKey("space") && attackWait >= 0.5f && !runningCoroutine){
+//			//            anim.SetBool("attacking", true);
+//			//            GameObject beak = Instantiate(Resources.Load (trueproj, typeof(GameObject)), new Vector2(0,transform.position.y), transform.rotation) as GameObject;
+//			//            attackWait = 0f;
+//			StartCoroutine(fire ());
+//			
+//		}
+		bool f = false;
+		if(Input.GetKey(KeyCode.UpArrow) && !runningCoroutine)
+		{
+			projectileScript.yv = Mathf.Abs(Input.GetAxis("Vertical"))+1;
+			projectileScript.rotationangle = 90f;
+			f = true;
+		}			
+		if(Input.GetKey(KeyCode.DownArrow) && !runningCoroutine)
+		{
+			projectileScript.yv = -1*(Mathf.Abs(Input.GetAxis("Vertical"))+1);
+			projectileScript.rotationangle = -90f;
+			f = true;
 		}
-		else{
+		if(Input.GetKey(KeyCode.LeftArrow) && !runningCoroutine)
+		{
+			projectileScript.xv = -1;
+			projectileScript.rotationangle = 180f;
+			f = true;
+		}			
+		if(Input.GetKey(KeyCode.RightArrow) && !runningCoroutine)
+		{
+			projectileScript.xv = 1;
+			projectileScript.rotationangle = 0f;
+			f = true;
+		}
+		if(f && !runningCoroutine)
+			StartCoroutine(fire());
+		else
+		{
 			anim.SetBool("attacking", false);
+			projectileScript.yv = 0f;
+			projectileScript.xv = 0f;
+			f = false;
 		}
 	}
 	
 	public IEnumerator fire(){
 		anim.SetBool("attacking", true);
 		runningCoroutine = true;
-		GameObject beak = Instantiate(Resources.Load ("Prefabs/" + projectile, typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+		GameObject g = (GameObject)Resources.Load ("Prefabs/" + projectile);
+//		projectileScript p = g.GetComponent<projectileScript>();
+		GameObject beak = Instantiate(g, transform.position, transform.rotation) as GameObject;
 		if (ATKUp){
 			beak.GetComponent<SpriteRenderer>().color = Color.red;
 		}
@@ -90,7 +126,7 @@ public class OGChickenController : MonoBehaviour {
 			ATKSPDUp = false;
 		}
 		yield return new WaitForSeconds(.6f);
-		this.runningCoroutine = false;
+		runningCoroutine = false;
 	}
 	
 	void OnGUI(){

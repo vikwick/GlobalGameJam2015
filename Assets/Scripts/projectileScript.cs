@@ -2,28 +2,33 @@
 using System.Collections;
 
 public class projectileScript : MonoBehaviour {
-    GameObject p;
+	public static float xv;
+	public static float yv;
+    GameObject player;
     OGChickenController _player;
     GameObject enemy;
     EnemyController _enemy;
     Animator anim;
-    float rotationangle = 0f;
-	// Use this for initialization
+    public static float rotationangle = 0f;
+
 	void Start () {
-        p = GameObject.FindGameObjectWithTag("Player");
-        _player = p.GetComponent<OGChickenController>();
-        anim = GetComponent<Animator>();
-        Vector2 projVector = new Vector2 (_player.OGChickenVec.x , _player.OGChickenVec.y );
-        projVector.Normalize();
-        if (_player.OGChickenVec.x == 0 && _player.OGChickenVec.y == 0){
-            rigidbody2D.velocity = _player.maxProjSpeed * new Vector2 (0, -1);
-            transform.rotation = Quaternion.Euler (new Vector3(0, 0, -90));
-        }
-        else {
-            rotationangle = Mathf.Rad2Deg*Mathf.Atan2(_player.OGChickenVec.y, _player.OGChickenVec.x);
-            transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
-            rigidbody2D.velocity = _player.maxProjSpeed * projVector;
-        }
+		player = GameManager.player;
+		_player = GameManager._player;
+		anim = GetComponent<Animator>();
+		Vector2 v = (new Vector2 (projectileScript.xv, projectileScript.yv));
+		v.Normalize();
+		rigidbody2D.velocity = v*_player.maxProjSpeed;
+//        projVector.Normalize();
+//
+//        if (_player.OGChickenVec.x == 0 && _player.OGChickenVec.y == 0){
+//            rigidbody2D.velocity = _player.maxProjSpeed * new Vector2 (0, -1);
+//            transform.rotation = Quaternion.Euler (new Vector3(0, 0, -90));
+//        }
+//        else {
+//	    rotationangle = Mathf.Rad2Deg*Mathf.Atan2(_player.OGChickenVec.y, _player.OGChickenVec.x);
+	    transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
+//            rigidbody2D.velocity = _player.maxProjSpeed * projVector;
+//        }
     }
 
 	void OnTriggerExit2D(Collider2D b){

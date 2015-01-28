@@ -94,16 +94,16 @@ public class Dungeon : MonoBehaviour {
 				Destroy(r);
 			}
 		}
-		for(int i=0; i<maxRooms; i++)
-		{
-			for(int j=0; j<maxRooms; j++)
-			{
-				if(map[i,j] != null)
-				{
-					Debug.Log(map[i,j].roomNum + " at x = " + i + ", y = " + j);
-				}
-			}
-		}
+//		for(int i=0; i<maxRooms; i++)
+//		{
+//			for(int j=0; j<maxRooms; j++)
+//			{
+//				if(map[i,j] != null)
+//				{
+//					Debug.Log(map[i,j].roomNum + " at x = " + i + ", y = " + j);
+//				}
+//			}
+//		}
 	}
 
 	/*
@@ -155,31 +155,31 @@ public class Dungeon : MonoBehaviour {
 			for(int i=0; i<4; i++)
 			{
 				Door _door = _r.dirs[i]!=null ? _r.dirs[i].GetComponent<Door>() : null;
-				Debug.Log("Source: " + _r.roomNum);
+//				Debug.Log("Source: " + _r.roomNum);
 				if (_door != null) {
 					
 					if(i==0 && contains(x,y+1) && map[x,y+1]!=null)
 					{
-						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
-						Debug.Log(map[x,y+1].roomNum);
+//						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+//						Debug.Log(map[x,y+1].roomNum);
 						_door.dst = map[x,y+1].dirs[1].GetComponent<Door>();
 					}
 					else if(i==1 && contains(x,y-1) && map[x,y-1]!=null)
 					{
-						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
-						Debug.Log(map[x,y-1].roomNum);
+//						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+//						Debug.Log(map[x,y-1].roomNum);
 						_door.dst = map[x,y-1].dirs[0].GetComponent<Door>();
 					}
 					else if(i==2 && contains(x-1,y) && map[x-1,y]!=null)
 					{
-						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
-						Debug.Log(map[x-1,y].roomNum);
+//						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+//						Debug.Log(map[x-1,y].roomNum);
 						_door.dst = map[x-1,y].dirs[3].GetComponent<Door>();
 					}
 					else if(i==3 && contains(x+1,y) && map[x+1,y]!=null)
 					{
-						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
-						Debug.Log(map[x+1,y].roomNum);
+//						Debug.Log("i = " + i + ", x = " + x + ", y = " + y);
+//						Debug.Log(map[x+1,y].roomNum);
 						_door.dst = map[x+1,y].dirs[2].GetComponent<Door>();
 					}
 				}
