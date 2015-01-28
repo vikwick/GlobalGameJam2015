@@ -105,13 +105,8 @@ MonoBehaviour:
   currentHP: 100
   OGChickenVec: {x: 0, y: 0}
   projectile: 
-<<<<<<< HEAD
-  ATKSPDUp: 0
-  ATKUp: 0
-=======
   ATKUp: 0
   ATKSPDUp: 0
->>>>>>> tylerbranch
   SPDUp: 0
   attackWait: .5
 --- !u!212 &21277794
