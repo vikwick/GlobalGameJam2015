@@ -1,74 +1,59 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour {
-
+public abstract class EnemyController : MonoBehaviour {
 	
-	public int ATK {get;set;}
-	public int HP {get;set;}
-	public int SPD {get;set;}
-	public int RNG {get;set;}
-	public Vector3 attackpath {get;set;}
-	public GameObject p {get;set;}
-	public OGChickenController _player {get;set;}
-	public Animator anim {get;set;}
-	//GameObject head;
-	public GameObject projectile {get;set;}
-	
-	public Coroutine runningCoroutine {get;set;}
+	public int ATK;
+	public int ATKSpd;
+	public int HP;
+	public int SPD;
+	public int RNG;
+	public Vector3 attackpath;
+	public Animator anim;
+	public GameObject projectile;
+	public Coroutine runningCoroutine;
 	public Room r;
+	public string spriteName;
+	public string projName;
 
-
-	// Use this for initialization
-	void Start () {
-		this.setSprite(this.getSpriteString());
-		this.anim = GetComponent<Animator>();
-		this.p = GameObject.FindGameObjectWithTag("Player");
-        this._player = p.GetComponent<OGChickenController>();
-		this.setStats(1, 5, 10);
-		this.setProjectile(this.getSpriteString());
-
+	protected virtual void Init(string sName, string pName)
+	{
+		spriteName = sName;
+		projName = pName;
+		anim = GetComponent<Animator>();
+		projectile = Resources.Load ("Prefabs/"+projName) as GameObject;
+		setSprite(spriteName);
 	}
 
-	public virtual string getProjectileString(){
-		return "Prefabs/Head1";
+	public virtual void setStats(int atk, int atkspd, int hp, int spd, int rng)
+	{
+		ATK = atk;
+		ATKSpd = atkspd;
+		HP = hp;
+		SPD = spd;
+		RNG = rng;
 	}
 
-	public virtual void setProjectile(string s){
-		if(s!=null){
-			//this.head = Resources.Load (s) as GameObject;
-			this.projectile = (GameObject)(Resources.Load (s) as GameObject);
-		}else{
-			this.projectile = null;
-		}
+	public virtual void setSprite(string s)
+	{
+		GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load("Sprites/"+s) as Sprite);
+		GetComponent<SpriteRenderer>().sortingOrder = 1;
 	}
 
-	public virtual void setStats(int x, int y, int z){
-		this.SPD = x;
-		this.RNG = y;
-		this.HP = z;
-	}
-
-	public virtual string getSpriteString(){
-		return "Sprites/BusinessMan/Businessman1";
-	}
-
-	public virtual void setSprite(string s){
-		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load(s) as Sprite);
-		this.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		this.kill();
-		if (this.HP <= 0){
+	void Update ()
+	{
+		if (HP <= 0)
+		{
 			r.enemies.Remove(gameObject);
 			Destroy (gameObject);
 		}
+		Move();
+		Kill();
 	}
 
 
-	void FixedUpdate(){
+	void FixedUpdate()
+	{
 		anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
 		anim.SetFloat("Speed", rigidbody2D.velocity.x);
 	}
@@ -77,56 +62,51 @@ public class EnemyController : MonoBehaviour {
 	{
 		if(c.gameObject.tag == "Player")
 		{
-			_player.currentHP -= 10;
+			GameManager._player.currentHP -= 10;
 		}
 	}
 
-	void OnTriggerExit2D(Collider2D b){
-		if(b.gameObject.tag == "beak")
-		{
-			HP -= _player.ATK;
-		}
-	}
-
-
-	public virtual void kill()
+	void OnTriggerExit2D(Collider2D b)
 	{
-		if(p!= null){
-			Vector3 pos = p.transform.position;
-			rigidbody2D.AddForce((pos - transform.position)*SPD);
-			if(pos.magnitude < RNG ) // player in range
-			{	//this.attacking = true;
+		if(b.gameObject.tag == "PlayerProjectile")
+		{
+			HP -= GameManager._player.ATK;
+		}
+	}
 
-				if(this.runningCoroutine==null){
-					this.runningCoroutine = StartCoroutine(this.Attack());
+	public virtual void Move()
+	{
+		rigidbody2D.velocity = (GameManager.player.transform.position - transform.position)*SPD;
+	}
+
+	public virtual void Kill()
+	{
+		if(GameManager.player!= null)
+		{
+			attackpath = GameManager.player.transform.position - transform.position;
+			if(attackpath.magnitude < RNG )
+			{
+				if(runningCoroutine==null)
+				{
+					runningCoroutine = StartCoroutine(Attack());
 				}
 			}
-			else{
-				anim.SetBool("attack", false);
-			}
-			attackpath = (pos - transform.position);
+//			else
+//			{
+//				anim.SetBool("attack", false);
+//			}
 		}
 	}
 
-	public virtual IEnumerator Attack() {
+	public virtual IEnumerator Attack()
+	{
 		anim.SetBool("attack",true);
-		//attack();
-		this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+		GetComponent<SpriteRenderer>().color = Color.red;
 		rigidbody2D.velocity = new Vector2(0,0);
-		
-		
-		//(pos - transform.position)
-		
-		GameObject head = Instantiate(Resources.Load ("Prefabs/Head1")as GameObject, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
-		head.transform.parent = this.transform;
-		head.AddComponent<BoxCollider2D>().isTrigger = true;
-
-
+		GameObject proj = Instantiate(projectile, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
+		proj.transform.parent = transform;
 		yield return new WaitForSeconds(2);
-	
 		this.runningCoroutine = null;
-		Destroy(head);
+		anim.SetBool("attack",false);
 	}
-
-
 }

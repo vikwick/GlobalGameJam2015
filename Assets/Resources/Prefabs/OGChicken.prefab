@@ -100,11 +100,10 @@ MonoBehaviour:
   maxProjSpeed: 10
   HP: 100
   infectedLevel: 0
-  ability: hello
   ATK: 5
   currentHP: 100
   OGChickenVec: {x: 0, y: 0}
-  projectile: 
+  projName: 
   ATKUp: 0
   ATKSPDUp: 0
   SPDUp: 0
@@ -127,7 +126,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1109321101
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: aecbec5a0de0bec47afab6f89e5e9ff3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

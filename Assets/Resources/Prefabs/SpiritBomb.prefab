@@ -14,7 +14,7 @@ GameObject:
   - 58: {fileID: 5891918}
   m_Layer: 0
   m_Name: SpiritBomb
-  m_TagString: beak
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

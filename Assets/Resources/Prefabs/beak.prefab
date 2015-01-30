@@ -13,8 +13,8 @@ GameObject:
   - 114: {fileID: 11433650}
   - 61: {fileID: 6125556}
   m_Layer: 0
-  m_Name: beak
-  m_TagString: beak
+  m_Name: Beak
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

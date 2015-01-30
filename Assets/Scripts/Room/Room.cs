@@ -101,27 +101,31 @@ public class Room : MonoBehaviour {
 		for(int i=0; i< num; i++)
 		{
 			int r = Random.Range(0,GameManager.numEnemies);
+			float ran = Random.Range(-1f,1f);
+			float p = ran*5;
+			Vector2 v = new Vector2(transform.position.x-p, transform.position.y-p);
+
 			if(r==0)
 			{
-				GameObject en = Instantiate(Resources.Load ("Prefabs/BusinessEnemy", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				GameObject en = Instantiate(Resources.Load ("Prefabs/BusinessEnemy", typeof(GameObject)), v, transform.rotation) as GameObject;
 				enemies.Add(en);
 				en.GetComponent<EnemyController>().r = this;
 			}
 			else if(r==1)
 			{
-				GameObject en = Instantiate(Resources.Load ("Prefabs/DemonEgg", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				GameObject en = Instantiate(Resources.Load ("Prefabs/DemonEgg", typeof(GameObject)), v, transform.rotation) as GameObject;
 				enemies.Add(en);
 				en.GetComponent<DemonEgg>().r = this;
 			}
 			else if(r==2)
 			{
-				GameObject en = Instantiate(Resources.Load ("Prefabs/DemonChicken", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				GameObject en = Instantiate(Resources.Load ("Prefabs/DemonChicken", typeof(GameObject)), v, transform.rotation) as GameObject;
 				enemies.Add(en);
 				en.GetComponent<DemonChicken>().r = this;
 			}
 			else if(r==3)
 			{
-				GameObject en = Instantiate(Resources.Load ("Prefabs/Scientist", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				GameObject en = Instantiate(Resources.Load ("Prefabs/Scientist", typeof(GameObject)), v, transform.rotation) as GameObject;
 				enemies.Add(en);
 				en.GetComponent<Scientist>().r = this;
 			}
@@ -130,27 +134,30 @@ public class Room : MonoBehaviour {
 
 	public void populateItem()
 	{
-		if(Random.Range(0,100)<90)
+		if(Random.Range(0f,1f)<.9f)
 		{
-			int r = Random.Range(0,10);
-			if(r < 2)
-				item = Instantiate(Resources.Load ("Prefabs/AttackSpeedCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
-			else if(r < 4)
-				item = Instantiate(Resources.Load ("Prefabs/AttackUpCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
-			else if(r < 6)
-				item = Instantiate(Resources.Load ("Prefabs/MustacheCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
-			else if(r < 8)
-				item = Instantiate(Resources.Load ("Prefabs/SpeedUpCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+			float r = Random.Range(0f,1f);
+			Vector2 v = transform.position;
+			if(r < .9f)
+				item = Instantiate(Resources.Load ("Prefabs/SSCollectable", typeof(GameObject)), v, transform.rotation) as GameObject;
+			else if(r < .2f)
+				item = Instantiate(Resources.Load ("Prefabs/MustacheCollectable", typeof(GameObject)), v, transform.rotation) as GameObject;
+			else if(r < .5f)
+				item = Instantiate(Resources.Load ("Prefabs/AttackUpCollectable", typeof(GameObject)), v, transform.rotation) as GameObject;
+			else if(r < .7f)
+				item = Instantiate(Resources.Load ("Prefabs/SpeedUpCollectable", typeof(GameObject)), v, transform.rotation) as GameObject;
 			else
-				item = Instantiate(Resources.Load ("Prefabs/SSCollectable", typeof(GameObject)), transform.position, transform.rotation) as GameObject;
+				item = Instantiate(Resources.Load ("Prefabs/AttackSpeedCollectable", typeof(GameObject)), v, transform.rotation) as GameObject;
 			item.SetActive(false);
 			item.transform.parent = transform;
 		}
 	}
 
-	public void playerEntered(Vector2 pos)
+	/*
+	 * Warns the room that the player has entered, 
+	 */
+	public void playerEntered()
 	{
-		GameManager.player.transform.position = pos;
 		if(!beaten)
 		{
 			if (!visited)

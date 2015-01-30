@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Dungeon : MonoBehaviour {
+public class Dungeon : MonoBehaviour
+{
 
 	int difficulty;
 	int maxRooms;
@@ -39,8 +40,6 @@ public class Dungeon : MonoBehaviour {
 		GameObject room = generateRoom(x,y);
 		Room _room = room.GetComponent<Room>();
 		_room.roomNum = 0;
-		_room.beaten = true;
-		_room.start = true;
 		_room.x = x;
 		_room.y = y;
 		map[x,y] = _room;
@@ -114,6 +113,8 @@ public class Dungeon : MonoBehaviour {
 	void createDoors()
 	{
 		start = (GameObject)rooms[Random.Range(0,rooms.Count)];
+		start.GetComponent<Room>().beaten = true;
+		start.GetComponent<Room>().start = true;
 		foreach(GameObject r in rooms)
 		{
 			Room _r = r.GetComponent<Room>();
@@ -235,7 +236,8 @@ public class Dungeon : MonoBehaviour {
 			pos.x -= dist;
 
 		Room r = d.transform.parent.GetComponent<Room>();
-		r.playerEntered(pos);
+		GameManager.player.transform.position = pos;
+		r.playerEntered();
 	}
 
 	public void placePlayer(GameObject r)

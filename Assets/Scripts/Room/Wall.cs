@@ -4,26 +4,25 @@ using System.Collections.Generic;
 
 public class Wall : MonoBehaviour {
 
-	void Start () {
-		this.setSprite("Environment/walls");
-		this.scale(1,1);
-		this.gameObject.AddComponent<PolygonCollider2D>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Start ()
+	{
+		setSprite("walls");
+		scale(1,1);
+//		gameObject.AddComponent<PolygonCollider2D>();
 	}
 
-	void OnMouseDown(){
+	void OnMouseDown()
+	{
 		Debug.Log ("Clicked Wall");
 	}
 
-	void setSprite(string spritestring){
-		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Sprites/" + spritestring, typeof(Sprite));
+	void setSprite(string spritestring)
+	{
+		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Sprites/Environment/Walls/" + spritestring, typeof(Sprite));
 	}
 
-	public void scale(int x, int y){
+	public void scale(int x, int y)
+	{
 		this.gameObject.transform.localScale = new Vector3(x, y, 0);
 	}
 }

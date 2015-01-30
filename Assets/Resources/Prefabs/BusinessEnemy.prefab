@@ -81,10 +81,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 167550}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6411140a5cac99a43b78f9ee1c57d58b, type: 3}
+  m_Script: {fileID: 11500000, guid: 365f58553f1aaee49a331d5e3aed4bc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ATK: 0
+  ATKSpd: 0
+  HP: 0
+  SPD: 0
+  RNG: 0
+  attackpath: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
+  _player: {fileID: 0}
+  anim: {fileID: 0}
+  projectile: {fileID: 0}
   r: {fileID: 0}
+  spriteName: 
+  projName: 
 --- !u!212 &21267550
 SpriteRenderer:
   m_ObjectHideFlags: 1

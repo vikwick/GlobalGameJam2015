@@ -14,7 +14,7 @@ GameObject:
   - 58: {fileID: 5876794}
   m_Layer: 0
   m_Name: DemonChickenProjectile
-  m_TagString: beak
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eede4c563e07edd4bb5d4466f12921c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy: {fileID: 0}
   maxProjSpeed: 0
 --- !u!212 &21276794
 SpriteRenderer:

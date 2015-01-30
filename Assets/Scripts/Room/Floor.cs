@@ -6,8 +6,8 @@ public class Floor : MonoBehaviour {
 	int n = 6;
 	// Use this for initialization
 	void Start () {
-		this.setSprite("Environment/floor");
-		this.scale(1,1);
+		setSprite("floor");
+		scale(1,1);
 	}
 	
 	// Update is called once per frame
@@ -20,7 +20,7 @@ public class Floor : MonoBehaviour {
 	}
 
 	public void setSprite(string spritestring){
-		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Sprites/" + spritestring, typeof(Sprite));
+		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Sprites/Environment/Floors/" + spritestring, typeof(Sprite));
 	}
 
 	public float getHeight(){

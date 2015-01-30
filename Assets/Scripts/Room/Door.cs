@@ -11,8 +11,7 @@ public class Door : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		this.setSprite("door");
-//		this.gameObject.AddComponent<BoxCollider2D>();
+		setSprite("door");
 		anim = GetComponent<Animator>();
 		if(positionType == 0)
 		{
@@ -53,7 +52,7 @@ public class Door : MonoBehaviour {
 	}
 	
 	public void setSprite(string spritestring){
-		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Sprites/" + spritestring, typeof(Sprite));
+		this.gameObject.GetComponent<SpriteRenderer>().sprite = (Sprite)Resources.Load("Sprites/Environment/Doors/" + spritestring, typeof(Sprite));
 	}
 
 	void OnCollisionEnter2D(Collision2D c)

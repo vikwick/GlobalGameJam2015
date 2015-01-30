@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class projectileScript : MonoBehaviour {
+public class ProjectileScript : MonoBehaviour {
 	public static float xv;
 	public static float yv;
     GameObject player;
@@ -11,11 +11,12 @@ public class projectileScript : MonoBehaviour {
     Animator anim;
     public static float rotationangle = 0f;
 
-	void Start () {
+	void Start ()
+	{
 		player = GameManager.player;
 		_player = GameManager._player;
 		anim = GetComponent<Animator>();
-		Vector2 v = (new Vector2 (projectileScript.xv, projectileScript.yv));
+		Vector2 v = (new Vector2 (ProjectileScript.xv, ProjectileScript.yv));
 		v.Normalize();
 		rigidbody2D.velocity = v*_player.maxProjSpeed;
 //        projVector.Normalize();
@@ -27,23 +28,17 @@ public class projectileScript : MonoBehaviour {
 //        else {
 //	    rotationangle = Mathf.Rad2Deg*Mathf.Atan2(_player.OGChickenVec.y, _player.OGChickenVec.x);
 	    transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
-//            rigidbody2D.velocity = _player.maxProjSpeed * projVector;
-//        }
     }
 
-	void OnTriggerExit2D(Collider2D b){
+	void OnTriggerExit2D(Collider2D b)
+	{
         if(b.gameObject.tag == "Enemy")
         {
 			_enemy = b.gameObject.GetComponent<EnemyController>();
-            if(_enemy != null)	_enemy.HP -= 5;
+			if(_enemy != null)	_enemy.HP -= _player.ATK;
 		}
-        if (b.gameObject.tag != "Player" && b.gameObject.tag!= "Door" && b.gameObject.tag!="Wall"){
-            Destroy(gameObject);
-        }  
-
+		if (b.gameObject.tag != "Player" && b.gameObject.tag != "PlayerProjectile" && b.gameObject.tag != "EnemyProjectile"){
+			Destroy(gameObject);
+        }
     }
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

@@ -3,8 +3,8 @@
 --- !u!78 &1
 TagManager:
   tags:
-  - beak
-  - 
+  - PlayerProjectile
+  - EnemyProjectile
   - Enemy
   - Dungeon
   - Room
@@ -14,6 +14,8 @@ TagManager:
   - 
   - Door
   - Floor
+  - 
+  - beak
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -51,4 +53,8 @@ TagManager:
   - name: Default
     userID: 0
     uniqueID: 0
+    locked: 0
+  - name: Player
+    userID: 1
+    uniqueID: 1109321101
     locked: 0

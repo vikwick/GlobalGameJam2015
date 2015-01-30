@@ -13,8 +13,8 @@ GameObject:
   - 114: {fileID: 11428324}
   - 58: {fileID: 5828324}
   m_Layer: 0
-  m_Name: taco
-  m_TagString: beak
+  m_Name: Taco
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
