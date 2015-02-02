@@ -32,7 +32,7 @@ public abstract class EnemyController : MonoBehaviour {
 			r.enemies.Remove(gameObject);
 			Destroy (gameObject);
 		}
-		if(projName != null && runningCoroutine != null)
+		if(runningCoroutine == null)
 		{
 			Move();
 		}
@@ -108,7 +108,7 @@ public abstract class EnemyController : MonoBehaviour {
 			proj.transform.parent = transform;
 		}
 		yield return new WaitForSeconds(ATKSpd);
-		this.runningCoroutine = null;
+		runningCoroutine = null;
 		anim.SetBool("attack",false);
 	}
 

@@ -113,7 +113,7 @@ public class Dungeon : MonoBehaviour
 	void createDoors()
 	{
 		Room _start = null;
-		while(_start==null || manhattanDistance(bossRoom, _start) > 1)
+		while(_start==null || manhattanDistance(bossRoom, _start) != 1 )
 		{
 			start = (GameObject)rooms[Random.Range(0,rooms.Count)];
 			_start = start.GetComponent<Room>();

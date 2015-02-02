@@ -136,10 +136,7 @@ public class Room : MonoBehaviour
 			if(bossRoom)
 			{
 				en = Resources.Load ("Prefabs/OgreBoss", typeof(GameObject)) as GameObject;
-				en.GetComponent<Boss>().r = this;	/* REPLACE WITH BOSS SCRIPT */
-				en = Instantiate(en, v, transform.rotation) as GameObject;
-				enemies.Add(en);
-				return;
+				en.GetComponent<ChargeBossController>().r = this;
 			}
 			else if(r==0)
 			{
@@ -164,6 +161,9 @@ public class Room : MonoBehaviour
 			en = Instantiate(en, v, transform.rotation) as GameObject;
 			enemies.Add(en);
 			en.transform.parent = transform;
+
+			if(bossRoom)
+				return;
 		}
 	}
 
@@ -201,6 +201,5 @@ public class Room : MonoBehaviour
 				reactivateEnemies();
 			alarm ();
 		}
-		Debug.Log (enemies.Count + " enemies.");
 	}
 }
