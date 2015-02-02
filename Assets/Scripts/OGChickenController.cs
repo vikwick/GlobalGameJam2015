@@ -2,15 +2,33 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class OGChickenController : MonoBehaviour {
-
+public class OGChickenController : MonoBehaviour
+{
 	Coroutine runningCoroutine;
-	public float maxSpeed = 10f;
-	public int maxProjSpeed = 10;
-	public int HP = 100;
+	float maxspd = 10f;			// max spd
+	public float maxSpeed{		// max spd property
+		get{return maxspd;}
+		set{if(value<7f)
+				maxspd=7f;
+			else
+				maxspd=value;}}
+	int mps = 10;				// max proj spd
+	public int maxProjSpeed{	// max proj spd property
+		get{return mps;}
+		set{if(value<4)
+				mps=4;
+			else
+				mps=value;}}
+	int atk = 5;				// atk
+	public int ATK{				// atk property
+		get{return atk;}
+		set{if(value<3)
+				atk=3;
+			else
+				atk=value;}}
+	public int maxHP = 100;
 	public int infectedLevel = 0;
-	public int ATK = 5;
-	public int currentHP = 100;
+	public int HP = 100;
 	private float idleTime = 0f;
 	public Vector2 OGChickenVec;
 	GameObject projectile;
@@ -23,12 +41,11 @@ public class OGChickenController : MonoBehaviour {
 	EnemyController _enemy;
 	Animator anim;
 	public float attackWait = 0.5f;
-	bool tab = false;
+	public bool tab = false;
 	
-	void Start () {
+	void Start ()
+	{
 		anim = GetComponent<Animator>();
-		//            enemy = GameObject.FindGameObjectWithTag("Enemy");
-		//            _enemy = enemy.GetComponent<EnemyController>();
 	}
 	
 	/*
@@ -38,49 +55,13 @@ public class OGChickenController : MonoBehaviour {
 	{
 		setProjectile("Beak");
 	}
-	
-	// Update is called once per frame
+
 	void Update ()
 	{
-		Move();
-	}
-
-	void Move()
-	{
-		OGChickenVec = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
-		rigidbody2D.velocity = OGChickenVec;
-		anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
-		anim.SetFloat("Speed", rigidbody2D.velocity.x);
-	}
-	void FixedUpdate ()
-	{
-		attackWait += Time.deltaTime;
-		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")) {
-			idleTime+=Time.deltaTime;
-		}
-		else{
-			idleTime = 0;
-		}
-		if((int)idleTime%2==0 && !timesUp){
-			timesUp = true;
-		}
-		else if(((int)idleTime+1)%2==0 & timesUp){
-			timesUp = false;
-			infectedLevel += 5;
-		}
-//		if (Input.GetButtonDown("Fire1"))
-//		{
-//			Debug.Log(Input.GetButtonDown("Fire1"));
-//		}
-//		if(Input.GetKey("space") && attackWait >= 0.5f && !runningCoroutine){
-//			//            anim.SetBool("attacking", true);
-//			//            GameObject beak = Instantiate(Resources.Load (trueproj, typeof(GameObject)), new Vector2(0,transform.position.y), transform.rotation) as GameObject;
-//			//            attackWait = 0f;
-//			StartCoroutine(fire ());
-//			
-//		}
-
 		bool f = false;
+
+		if(Input.GetKeyDown(KeyCode.Tab))
+		{tab = !tab;Debug.Log(tab);}
 
 		if(Input.GetKey(KeyCode.UpArrow) && runningCoroutine==null)
 		{
@@ -106,7 +87,7 @@ public class OGChickenController : MonoBehaviour {
 			ProjectileScript.rotationangle = 0f;
 			f = true;
 		}
-
+		
 		if(f && runningCoroutine==null)
 			runningCoroutine = StartCoroutine(Fire());
 		else
@@ -116,6 +97,38 @@ public class OGChickenController : MonoBehaviour {
 			ProjectileScript.xv = 0f;
 			f = false;
 		}
+
+		Move();
+	}
+
+	void FixedUpdate ()
+	{
+		attackWait += Time.deltaTime;
+		if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+		{
+			idleTime+=Time.deltaTime;
+		}
+		else
+		{
+			idleTime = 0;
+		}
+		if((int)idleTime%2==0 && !timesUp)
+		{
+			timesUp = true;
+		}
+		else if(((int)idleTime+1)%2==0 & timesUp)
+		{
+			timesUp = false;
+			infectedLevel += 5;
+		}
+	}
+
+	void Move()
+	{
+		OGChickenVec = new Vector2 ((maxSpeed * Input.GetAxis("Horizontal")), maxSpeed * Input.GetAxis("Vertical"));
+		rigidbody2D.velocity = OGChickenVec;
+		anim.SetFloat ("vSpeed", rigidbody2D.velocity.y);
+		anim.SetFloat("Speed", rigidbody2D.velocity.x);
 	}
 	
 	public IEnumerator Fire()
@@ -151,11 +164,11 @@ public class OGChickenController : MonoBehaviour {
 	{
 		int s = 4;
 		float boxSizeInfected = (Screen.width / s) / (100f/infectedLevel+1);
-		float boxSizeHP = Screen.width / s/ ((float)HP/(currentHP+1));
+		float boxSizeHP = Screen.width / s/ ((float)maxHP/(HP+1));
 		GUI.color = Color.black;
-		GUI.Box(new Rect(10, 10, Screen.width / s, 20), "HP:" + currentHP + "/" + HP);
+		GUI.Box(new Rect(10, 10, Screen.width / s, 20), "maxHP:" + HP + "/" + maxHP);
 		GUI.Box(new Rect(10, 30, Screen.width / s, 20), "Infection:" + infectedLevel + "%");
-		if ((int)currentHP > 3)
+		if ((int)HP > 3)
 		{
 			GUI.color = Color.green;
 			GUI.Button(new Rect(10, 10, boxSizeHP, 20), "");

@@ -14,7 +14,7 @@ GameObject:
   - 212: {fileID: 21231944}
   m_Layer: 0
   m_Name: SSCollectable
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -16.7000008, y: 9.60000038, z: 0}
+  m_LocalPosition: {x: 299.035614, y: 113.041054, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,9 +54,9 @@ CircleCollider2D:
   m_GameObject: {fileID: 117014}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Radius: .762662888
-  m_Center: {x: 0, y: 0}
+  m_IsTrigger: 1
+  m_Radius: .351470947
+  m_Center: {x: -.119999997, y: 0}
 --- !u!114 &11404118
 MonoBehaviour:
   m_ObjectHideFlags: 1

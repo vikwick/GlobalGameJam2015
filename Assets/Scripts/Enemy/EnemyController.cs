@@ -6,6 +6,7 @@ public abstract class EnemyController : MonoBehaviour {
 	public int ATK;
 	public int ATKSpd;
 	public int HP;
+	public int MaxHP;
 	public int SPD;
 	public int RNG;
 	public Vector3 attackpath;
@@ -13,31 +14,15 @@ public abstract class EnemyController : MonoBehaviour {
 	public GameObject projectile;
 	public Coroutine runningCoroutine;
 	public Room r;
-	public string spriteName;
 	public string projName;
 
 	protected virtual void Init(string sName, string pName)
 	{
-		spriteName = sName;
-		projName = pName;
+		if(pName != "")
+			projName = pName;
+			projectile = Resources.Load ("Prefabs/"+projName) as GameObject;
 		anim = GetComponent<Animator>();
-		projectile = Resources.Load ("Prefabs/"+projName) as GameObject;
-		setSprite(spriteName);
-	}
-
-	public virtual void setStats(int atk, int atkspd, int hp, int spd, int rng)
-	{
-		ATK = atk;
-		ATKSpd = atkspd;
-		HP = hp;
-		SPD = spd;
-		RNG = rng;
-	}
-
-	public virtual void setSprite(string s)
-	{
-		GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load("Sprites/"+s) as Sprite);
-		GetComponent<SpriteRenderer>().sortingOrder = 1;
+		setSprite(sName);
 	}
 
 	void Update ()
@@ -47,10 +32,28 @@ public abstract class EnemyController : MonoBehaviour {
 			r.enemies.Remove(gameObject);
 			Destroy (gameObject);
 		}
-		Move();
+		if(projName != null && runningCoroutine != null)
+		{
+			Move();
+		}
 		Kill();
 	}
 
+	public virtual void setStats(int atk, int atkspd, int hp, int spd, int rng)
+	{
+		ATK = atk;
+		ATKSpd = atkspd;
+		HP = hp;
+		MaxHP = hp;
+		SPD = spd;
+		RNG = rng;
+	}
+
+	public virtual void setSprite(string s)
+	{
+		GetComponent<SpriteRenderer>().sprite = (Sprite)(Resources.Load("Sprites/"+s) as Sprite);
+		GetComponent<SpriteRenderer>().sortingOrder = 1;
+	}
 
 	void FixedUpdate()
 	{
@@ -62,7 +65,7 @@ public abstract class EnemyController : MonoBehaviour {
 	{
 		if(c.gameObject.tag == "Player")
 		{
-			GameManager._player.currentHP -= 10;
+			GameManager._player.HP -= ATK;
 		}
 	}
 
@@ -91,10 +94,6 @@ public abstract class EnemyController : MonoBehaviour {
 					runningCoroutine = StartCoroutine(Attack());
 				}
 			}
-//			else
-//			{
-//				anim.SetBool("attack", false);
-//			}
 		}
 	}
 
@@ -103,10 +102,18 @@ public abstract class EnemyController : MonoBehaviour {
 		anim.SetBool("attack",true);
 		GetComponent<SpriteRenderer>().color = Color.red;
 		rigidbody2D.velocity = new Vector2(0,0);
-		GameObject proj = Instantiate(projectile, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
-		proj.transform.parent = transform;
-		yield return new WaitForSeconds(2);
+		if(projectile!=null)
+		{
+			GameObject proj = Instantiate(projectile, transform.position + new Vector3(1,-2, 0), transform.rotation) as GameObject;
+			proj.transform.parent = transform;
+		}
+		yield return new WaitForSeconds(ATKSpd);
 		this.runningCoroutine = null;
 		anim.SetBool("attack",false);
+	}
+
+	public void reset()
+	{
+		HP = MaxHP;
 	}
 }

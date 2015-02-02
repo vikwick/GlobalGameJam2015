@@ -34,9 +34,8 @@ public class RaktharController : MonoBehaviour {
     }
     
     // Update is called once per frame
-    void Update () {
-
-
+    void Update () 
+	{
         this.kill();
     }
 
@@ -49,7 +48,7 @@ public class RaktharController : MonoBehaviour {
     {
         if(c.gameObject.tag == "Player")
         {
-            _player.currentHP -= 10;
+            _player.HP -= 10;
         }
 
         if(c.gameObject.tag == "beak")

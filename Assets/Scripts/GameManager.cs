@@ -13,9 +13,12 @@ public class GameManager : MonoBehaviour {
 	public static OGChickenController _player;
 	public static GameObject currRoom;
 	float zoom = 3.5f;
+	GameObject stats;
 	
-	void Start () {
+	void Start ()
+	{
 		cam = GameObject.FindGameObjectWithTag("MainCamera");
+		stats = GameObject.FindGameObjectWithTag("StatsUI");
 		player = Instantiate (Resources.Load("Prefabs/OGChicken") as GameObject, transform.position, transform.rotation) as GameObject;
 		currRoom = player;
 		_player = player.GetComponent<OGChickenController>();
@@ -30,29 +33,32 @@ public class GameManager : MonoBehaviour {
 		currRoom = _dungeon.start;
 		_dungeon.placePlayer(currRoom);
 	}
-	
-	// Update is called once per frame
+
 	void Update ()
 	{
 		if(this.died()) {
 			this.gameOver();
 		}
+
+		/* Set stats UI to active or unactive */
+		if(Input.GetKeyDown(KeyCode.Tab))
+			stats.SetActive(!stats.activeInHierarchy);
 		
 		cam.transform.position = new Vector3(currRoom.transform.position.x, currRoom.transform.position.y, -6f);
 	}
 	
 	
-	bool died(){
-		return (_player.currentHP <= 0 || _player.infectedLevel == 100);
+	bool died()
+	{
+		return (_player.HP <= 0 || _player.infectedLevel == 100);
 	}
 	
 	
-	void gameOver(){
-		//kill player
+	void gameOver()
+	{
 		Destroy(player);
 		currRoom.GetComponent<Room>().reset();
-		// death message
-		this.deathMessage("You Were Murdered");
+//		this.deathMessage("You Were Murdered");
 		currRoom = _dungeon.start;
 		player = Instantiate (Resources.Load("Prefabs/OGChicken") as GameObject, currRoom.transform.position, currRoom.transform.rotation) as GameObject;
 		_player = player.GetComponent<OGChickenController>();

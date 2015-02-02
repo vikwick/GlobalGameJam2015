@@ -10,9 +10,9 @@ GameObject:
   - 4: {fileID: 433292}
   - 50: {fileID: 5033292}
   - 212: {fileID: 21233292}
-  - 61: {fileID: 6133292}
   - 95: {fileID: 9533292}
   - 114: {fileID: 11400156}
+  - 58: {fileID: 5802576}
   m_Layer: 0
   m_Name: DemonEgg
   m_TagString: Enemy
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133292}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 31.1575241, y: -4.15519667, z: 0}
+  m_LocalPosition: {x: 296.459747, y: 115.307838, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -47,8 +47,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!61 &6133292
-BoxCollider2D:
+--- !u!58 &5802576
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -56,8 +56,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1.1673727, y: 1.90974808}
-  m_Center: {x: .0580539703, y: .0119795799}
+  m_Radius: .728424072
+  m_Center: {x: .100000001, y: 0}
 --- !u!95 &9533292
 Animator:
   serializedVersion: 3
@@ -84,7 +84,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8d893cb517f3347b2f169a15f66544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ATK: 0
+  ATKSpd: 0
+  HP: 0
+  SPD: 0
+  RNG: 0
+  attackpath: {x: 0, y: 0, z: 0}
+  anim: {fileID: 0}
+  projectile: {fileID: 0}
   r: {fileID: 0}
+  spriteName: 
+  projName: 
 --- !u!212 &21233292
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,79 +1,83 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &133650
+--- !u!1 &120116
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 433650}
-  - 212: {fileID: 21233650}
-  - 50: {fileID: 5033650}
-  - 114: {fileID: 11433650}
-  - 61: {fileID: 6125556}
+  - 4: {fileID: 420116}
+  - 212: {fileID: 21220116}
+  - 114: {fileID: 11420116}
+  - 60: {fileID: 6087196}
   m_Layer: 0
-  m_Name: Beak
-  m_TagString: PlayerProjectile
+  m_Name: Walls
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &433650
+--- !u!4 &420116
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133650}
+  m_GameObject: {fileID: 120116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 103.476685, y: -24.1078053, z: 0}
+  m_LocalPosition: {x: 10.8706846, y: -2.14791918, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5033650
-Rigidbody2D:
+--- !u!60 &6087196
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133650}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_FixedAngle: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
---- !u!61 &6125556
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133650}
+  m_GameObject: {fileID: 120116}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Size: {x: .788240194, y: .322400182}
-  m_Center: {x: -.0799999982, y: -.0399999991}
---- !u!114 &11433650
+  m_IsTrigger: 0
+  m_Poly:
+    m_Paths:
+    - - {x: -8, y: 8}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: 8}
+    - - {x: -6.12315655, y: -1.7126193}
+      - {x: -7.78545332, y: .0774729252}
+      - {x: -6.03334188, y: 1.71693778}
+      - {x: -5.96875, y: 5.921875}
+      - {x: -1.65371513, y: 6.11466217}
+      - {x: -.051525116, y: 7.7308135}
+      - {x: 1.62163448, y: 6.11302948}
+      - {x: 5.98181057, y: 6.0391798}
+      - {x: 6.03648472, y: 2.00186157}
+      - {x: 7.76180744, y: .299217939}
+      - {x: 6.09080219, y: -1.28576803}
+      - {x: 5.953125, y: -5.890625}
+      - {x: 1.52322674, y: -6.00463152}
+      - {x: .0611181259, y: -7.56099272}
+      - {x: -1.68252945, y: -5.9829545}
+      - {x: -5.96875, y: -5.890625}
+--- !u!114 &11420116
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133650}
+  m_GameObject: {fileID: 120116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9562f279ce4a34ca72578c78098a48, type: 3}
+  m_Script: {fileID: 11500000, guid: 2faa942b2bcfe5d429270ae9afd78453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &21233650
+--- !u!212 &21220116
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133650}
+  m_GameObject: {fileID: 120116}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -86,9 +90,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 1109321101
+  m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b31a94d74532ae6499056cc449849d69, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88ad6c87b27f1d644a2e25b714669b45, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -99,6 +103,6 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 133650}
+  m_RootGameObject: {fileID: 120116}
   m_IsPrefabParent: 1
   m_IsExploded: 1

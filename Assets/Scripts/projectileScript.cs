@@ -4,23 +4,17 @@ using System.Collections;
 public class ProjectileScript : MonoBehaviour {
 	public static float xv;
 	public static float yv;
-    GameObject player;
-    OGChickenController _player;
-    GameObject enemy;
-    EnemyController _enemy;
     Animator anim;
     public static float rotationangle = 0f;
+	int walls = 0;
 
 	void Start ()
 	{
-		player = GameManager.player;
-		_player = GameManager._player;
-		anim = GetComponent<Animator>();
+//		anim = GetComponent<Animator>();
 		Vector2 v = (new Vector2 (ProjectileScript.xv, ProjectileScript.yv));
 		v.Normalize();
-		rigidbody2D.velocity = v*_player.maxProjSpeed;
-//        projVector.Normalize();
-//
+		rigidbody2D.velocity = v*GameManager._player.maxProjSpeed;
+
 //        if (_player.OGChickenVec.x == 0 && _player.OGChickenVec.y == 0){
 //            rigidbody2D.velocity = _player.maxProjSpeed * new Vector2 (0, -1);
 //            transform.rotation = Quaternion.Euler (new Vector3(0, 0, -90));
@@ -30,15 +24,36 @@ public class ProjectileScript : MonoBehaviour {
 	    transform.rotation = Quaternion.Euler (new Vector3(0, 0, rotationangle));
     }
 
-	void OnTriggerExit2D(Collider2D b)
+	void OnTriggerEnter2D(Collider2D c)
 	{
-        if(b.gameObject.tag == "Enemy")
+        if(c.gameObject.tag == "Enemy")
         {
-			_enemy = b.gameObject.GetComponent<EnemyController>();
-			if(_enemy != null)	_enemy.HP -= _player.ATK;
+			EnemyController _enemy = c.gameObject.GetComponent<EnemyController>();
+			if(_enemy != null)	_enemy.HP -= GameManager._player.ATK;
 		}
-		if (b.gameObject.tag != "Player" && b.gameObject.tag != "PlayerProjectile" && b.gameObject.tag != "EnemyProjectile"){
+		if (GameManager._player.projName != "SpiritBomb" && c.gameObject.tag != "Player" && c.gameObject.tag != "PlayerProjectile" && c.gameObject.tag != "EnemyProjectile")
+		{
 			Destroy(gameObject);
         }
     }
+
+	void OnTriggerExit2D(Collider2D c)
+	{
+		if(GameManager._player.projName == "SpiritBomb" && c.gameObject.tag == "Walls" && walls == 2)
+			Destroy(gameObject);
+		else
+			walls += 1;
+		StartCoroutine(FinishHim());
+	}
+
+	/*
+	 * Specifically for SpiritBomb. If a SB exits only one wall collider
+	 * (thus not satisfying the conditional in OnTriggerExit2D), this
+	 * time destruction method ensures its removal from the scene.
+	 */
+	IEnumerator FinishHim()
+	{
+		yield return new WaitForSeconds(1.75f);
+		Destroy (gameObject);
+	}
 }

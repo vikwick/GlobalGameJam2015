@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11484968}
   m_Layer: 0
   m_Name: AcidBolt
-  m_TagString: beak
+  m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eede4c563e07edd4bb5d4466f12921c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxProjSpeed: 0
+  _enemy: {fileID: 0}
 --- !u!114 &11484968
 MonoBehaviour:
   m_ObjectHideFlags: 1

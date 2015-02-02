@@ -18,9 +18,9 @@ public class Head : MonoBehaviour {
 	{
 		if(c.gameObject.tag == "Player")
 		{
-			GameManager._player.currentHP -= 15;
+			GameManager._player.HP -= 15;
 		}
-		if(c.gameObject.tag != "Enemy" && c.gameObject.tag != "EnemyProjectile")
+		if(c.gameObject.tag != "Enemy" && c.gameObject.tag != "EnemyProjectile" && c.gameObject.tag != "PlayerProjectile")
 		{
 			Destroy(gameObject);
 		}

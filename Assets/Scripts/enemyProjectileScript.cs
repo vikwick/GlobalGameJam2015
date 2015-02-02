@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyProjectileScript : MonoBehaviour {
+public class EnemyProjectileScript : MonoBehaviour
+{
     GameObject player;
     OGChickenController _player;
     GameObject enemy;
@@ -9,13 +10,9 @@ public class EnemyProjectileScript : MonoBehaviour {
     Animator anim;
     int maxProjSpeed = 10;
     float rotationangle = 0f;
-    // Use this for initialization
-    void Start () {
-//        enemy = GameObject.FindGameObjectWithTag("Enemy");
-//
-//		if(enemy!= null){ 
-//			_enemy = enemy.GetComponent<EnemyController>();
-//			if(_enemy!=null){
+
+    void Start ()
+	{
         anim = GetComponent<Animator>();
 		Vector2 projVector = GameManager.player.transform.position - transform.position;
         projVector.Normalize();
@@ -24,19 +21,16 @@ public class EnemyProjectileScript : MonoBehaviour {
 		rigidbody2D.velocity = maxProjSpeed * projVector;
 	}
 
-    void OnTriggerExit2D(Collider2D b){
-		Debug.Log (b.gameObject.tag);
-        if(b.gameObject.tag == "Player")
+    void OnTriggerExit2D(Collider2D c)
+	{
+        if(c.gameObject.tag == "Player")
         {
-			GameManager.player.GetComponent<OGChickenController>().currentHP -= 5;
+			EnemyController _enemy = c.gameObject.GetComponent<EnemyController>();
+			if(_enemy!=null)
+				GameManager._player.HP -= _enemy.ATK;
         } 
-		if (b.gameObject.tag != "Enemy" && b.gameObject.tag != "PlayerProjectile" && b.gameObject.tag != "EnemyProjectile"){
+		if (c.gameObject.tag != "Enemy" && c.gameObject.tag != "PlayerProjectile" && c.gameObject.tag != "EnemyProjectile"){
 			Destroy(gameObject);
-        }  
-
-    }
-    // Update is called once per frame
-    void Update () {
-    
+        }
     }
 }
